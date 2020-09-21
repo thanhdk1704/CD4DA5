@@ -10,6 +10,8 @@ import { SanphamComponent } from './sanpham/sanpham.component';
 import { DangnhapdangkyComponent } from './dangnhapdangky/dangnhapdangky.component';
 import { ComingsoonComponent } from './layouts/comingsoon/comingsoon.component';
 import { EmbedJsService } from './services/embed-js.service';
+import {HttpClientModule} from '@angular/common/http';
+import { BaseComponent } from './base/base.component';
 
 
 @NgModule({
@@ -22,11 +24,12 @@ import { EmbedJsService } from './services/embed-js.service';
     SanphamComponent,
     DangnhapdangkyComponent,
     ComingsoonComponent,
+    BaseComponent,
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,HttpClientModule
   ],
   providers: [EmbedJsService],
   bootstrap: [AppComponent]
