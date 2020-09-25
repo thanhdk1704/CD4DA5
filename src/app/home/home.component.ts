@@ -1,35 +1,32 @@
-import { Component, OnInit, AfterViewInit, Renderer2 } from '@angular/core';
-
+import { Component, OnInit, AfterViewInit, Injector } from '@angular/core';
+import { BaseComponent } from '../services/base.component';
+import { Observable } from 'rxjs';
+import {  combineLatest } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit,AfterViewInit {
+export class HomeComponent extends BaseComponent implements OnInit {
 
-  constructor(private renderer: Renderer2) { }
-
+  list_item:any;
+  constructor(injector: Injector) { 
+    super(injector);
+  }
+ 
   ngOnInit(): void {
+    Observable.combineLatest(
+      this._api.get('/api/item/get-all'),
+    ).takeUntil(this.unsubscribe).subscribe(res => {
+      this.list_item = res[0];
+      setTimeout(() => {
+        this.loadScripts();
+      });
+    }, err => { });
   }
-  ngAfterViewInit() { 
-    this.loadScripts();
+  
+  addToCart(it) { 
+    this._cart.addToCart(it);
+    alert('Thêm thành công!'); 
   }
-  public loadScripts() {
-    this.renderExternalScript('assets/js/main.js').onload = () => {
-    }
-    this.renderExternalScript('assets/js/map.js').onload = () => {
-    }
-    this.renderExternalScript('assets/js/plugins.js').onload = () => {
-    }
-  }
-  public renderExternalScript(src: string): HTMLScriptElement {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = src;
-    script.async = true;
-    script.defer = true;
-    this.renderer.appendChild(document.body, script);
-    return script;
-  }
-
 }

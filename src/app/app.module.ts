@@ -11,7 +11,7 @@ import { DangnhapdangkyComponent } from './dangnhapdangky/dangnhapdangky.compone
 import { ComingsoonComponent } from './layouts/comingsoon/comingsoon.component';
 import { EmbedJsService } from './services/embed-js.service';
 import {HttpClientModule} from '@angular/common/http';
-import { BaseComponent } from './base/base.component';
+// import { BaseComponent } from './base/base.component';
 
 
 @NgModule({
@@ -24,7 +24,7 @@ import { BaseComponent } from './base/base.component';
     SanphamComponent,
     DangnhapdangkyComponent,
     ComingsoonComponent,
-    BaseComponent,
+    // BaseComponent,
 
   ],
   imports: [
