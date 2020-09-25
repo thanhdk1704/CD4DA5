@@ -15,6 +15,9 @@ import { GiohangRoutingModule } from './giohang-routing.module';
   imports: [
     CommonModule,
 ReactiveFormsModule,GiohangRoutingModule
+  ],
+  providers:[
+    
   ]
 })
 export class GiohangModule { }

@@ -8,7 +8,7 @@ import { Component, OnInit,NgModule } from '@angular/core';
 export class DanhsachComponent implements OnInit {
 
   constructor() { }
-
+breadcrum="shop";
   ngOnInit(): void {
   }
 

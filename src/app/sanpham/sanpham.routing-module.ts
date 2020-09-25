@@ -7,9 +7,12 @@ import { SptheohangComponent } from './sptheohang/sptheohang.component';
 
 
 const routes: Routes = [
-{path:'',component:SanphamComponent
+{path:'',component:SanphamComponent,children:[
+  {path:'list',component:DanhsachComponent},
+  {path:'chi-tiet',component:ChitietComponent}
+]
 },
-{path:'chi-tiet',component:ChitietComponent}
+
 ];
 
 @NgModule({
