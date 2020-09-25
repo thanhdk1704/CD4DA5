@@ -15,18 +15,20 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
  
   ngOnInit(): void {
-    Observable.combineLatest(
-      this._api.get('/api/item/get-all'),
-    ).takeUntil(this.unsubscribe).subscribe(res => {
-      this.list_item = res[0];
-      setTimeout(() => {
+    
+    // Observable.combineLatest(
+    //   this._api.get('/api/item/get-all'),
+    // ).takeUntil(this.unsubscribe).subscribe(res => {
+    //   this.list_item = res[0];
+    //   setTimeout(() => {
         this.loadScripts();
-      });
-    }, err => { });
-  }
+  //     });
+  //   }, err => { });
+  // }
   
-  addToCart(it) { 
-    this._cart.addToCart(it);
-    alert('Thêm thành công!'); 
-  }
+  // addToCart(it) { 
+  //   this._cart.addToCart(it);
+  //   alert('Thêm thành công!'); 
+  // 
+}
 }
