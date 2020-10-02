@@ -7,10 +7,9 @@ import { SptheohangComponent } from './sptheohang/sptheohang.component';
 
 
 const routes: Routes = [
-{path:'',component:SanphamComponent,children:[
-  {path:'list',component:DanhsachComponent},
-  {path:'chi-tiet',component:ChitietComponent}
-]
+{path:'',component:SanphamComponent},
+{
+path:'chi-tiet',component:ChitietComponent
 },
 
 ];

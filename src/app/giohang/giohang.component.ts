@@ -13,7 +13,6 @@ export class GiohangComponent extends BaseComponent implements  OnInit {
   }
 
   ngOnInit(): void {
-    this.loadScripts;
   }
 
 }

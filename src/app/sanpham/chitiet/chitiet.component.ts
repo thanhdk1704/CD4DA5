@@ -12,7 +12,7 @@ export class ChitietComponent extends BaseComponent implements OnInit {
     super(injector);
   }
   ngOnInit(): void {
-    this.loadScripts();
+    // this.loadScripts();
   }
 
 }
