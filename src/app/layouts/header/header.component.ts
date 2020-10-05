@@ -9,7 +9,7 @@ import {Observable, Subject, of, from} from 'rxjs'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent extends BaseComponent implements OnInit {
-  menus:any;
+  menus:any; //ssk
   constructor(injector: Injector) { 
     super(injector);
   }
