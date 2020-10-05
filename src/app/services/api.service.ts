@@ -8,7 +8,7 @@ import { throwError as observableThrowError } from 'rxjs';
 })
 export class ApiService {
   public portnumber='44334';
-  public host = 'http://localhost:'+this.portnumber;
+  public host = 'https://localhost:44334/';
   constructor(private _http: HttpClient, public router: Router) {}
 
   post(url: string, obj: any) {

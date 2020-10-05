@@ -9,12 +9,12 @@ import {Observable, Subject, of, from} from 'rxjs'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent extends BaseComponent implements OnInit {
-  menus:any; //ssk
+  menus:any; 
   constructor(injector: Injector) { 
     super(injector);
   }
   ngOnInit(): void {
-    this._api.get('/api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(res => {
       this.menus = res;
     }); 
   }
