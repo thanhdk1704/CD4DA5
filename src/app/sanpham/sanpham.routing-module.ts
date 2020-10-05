@@ -11,6 +11,7 @@ const routes: Routes = [
 {
 path:'chi-tiet',component:ChitietComponent
 },
+{path:'list',component:DanhsachComponent}
 
 ];
 

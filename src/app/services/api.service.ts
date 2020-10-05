@@ -1,14 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map,takeUntil } from 'rxjs/operators';
 import { throwError as observableThrowError } from 'rxjs';
-
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  public portnumber='12345';
+  public portnumber='44334';
   public host = 'http://localhost:'+this.portnumber;
   constructor(private _http: HttpClient, public router: Router) {}
 

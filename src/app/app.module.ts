@@ -11,6 +11,7 @@ import { DangnhapdangkyComponent } from './dangnhapdangky/dangnhapdangky.compone
 import { ComingsoonComponent } from './layouts/comingsoon/comingsoon.component';
 import { EmbedJsService } from './services/embed-js.service';
 import {HttpClientModule} from '@angular/common/http';
+import { CurrPipe } from './services/curr.pipe';
 // import { ChitietComponent } from './sanpham/chitiet/chitiet.component';
 // import { BaseComponent } from './base/base.component';
 
@@ -25,6 +26,7 @@ import {HttpClientModule} from '@angular/common/http';
     SanphamComponent,
     DangnhapdangkyComponent,
     ComingsoonComponent,
+    CurrPipe,
     // BaseComponent,
 
   ],

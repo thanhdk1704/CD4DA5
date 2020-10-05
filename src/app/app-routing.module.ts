@@ -11,7 +11,6 @@ const routes: Routes = [
   {path:'',component:HomeComponent},
   
   {path:'login',component:DangnhapdangkyComponent},
-{path:'shops',component:DanhsachComponent},
   {path:'shop',loadChildren:()=>import('./sanpham/sanpham.module').then(x=>x.SanphamModule)},
   {path:'taikhoan',loadChildren:()=>import('./khachhang/khachhang.module').then(x=>x.KhachhangModule)},
   {path:'cart',component:GiohangComponent},
