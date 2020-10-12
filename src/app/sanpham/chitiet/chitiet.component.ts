@@ -7,11 +7,22 @@ import { BaseComponent } from '../../services/base.component';
   styleUrls: ['./chitiet.component.css']
 })
 export class ChitietComponent extends BaseComponent implements OnInit {
+ item:any;
   constructor(injector: Injector) { 
     super(injector);
   }
   ngOnInit(): void {
-    // this.loadScripts();
+    this.item = {};
+    this._route.params.subscribe(params => {
+      let id = params['id'];
+      this._api.get('/api/QLSanPham/detail/'+id).takeUntil(this.unsubscribe).subscribe(res => {
+        this.item = res;
+        setTimeout(() => {
+          this.loadScripts();
+        });
+      }); 
+    });
+
   }
 
 }

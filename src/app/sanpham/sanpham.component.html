@@ -24,13 +24,14 @@
                     <div class="widget_list widget_categories">
                         <h3>Danh mục</h3>
                         <ul>
-                            <li><b><a href="#">Cameras & Camcoders</a></b></li>
-                            <li class="widget_sub_categories"><a href="javascript:void(0)"><b>Computer & Networking</b></a>
+                            <ng-container *ngFor=" let ita of menus2">
+                            <li class="widget_sub_categories"><a href="javascript:void(0)"><b>{{ita.tenLoai}}</b></a>
                                 <ul class="widget_dropdown_categories">
                                     <li><a href="#">Computer</a></li>
                                     <li><a href="#">Networking</a></li>
                                 </ul>
                             </li>
+                        </ng-container>
                             
                         </ul>
                     </div>
@@ -145,6 +146,7 @@
                 </div>
                  <!--shop toolbar end-->
                  <div class="row shop_wrapper">
+                     <ng-container *ngFor="let sp of list_item">
                     <div class="col-lg-3 col-md-4 col-12 ">
                         <article class="single_product">
                             <figure>
@@ -160,8 +162,8 @@
                                 </div>
                                 <div class="product_content grid_content">
                                     <div class="product_content_inner">
-                                        <p class="manufacture_product"><a href="#">Parts</a></p>
-                                        <h4 class="product_name"><a href="product-details.html">Nunc Neque Eros</a></h4>
+                                        <p class="manufacture_product"><a href="#">còn lại:{{sp.soLuongCon}}</a></p>
+                                        <h4 class="product_name"><a href="product-details.html">{{sp.tenSanPham}}</a></h4>
                                         <div class="product_rating">
                                            <ul>
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
@@ -173,7 +175,7 @@
                                         </div>
                                         <div class="price_box"> 
                                             <span class="old_price">$320.00</span> 
-                                            <span class="current_price">$120.00</span>
+                                            <span class="current_price">{{sp.giahientai.gia}}</span>
                                         </div>
                                     </div>
                                     <div class="action_links">
@@ -187,7 +189,7 @@
                                 <div class="product_content list_content">
                                     <div class="left_caption">
                                        <p class="manufacture_product"><a href="#">Parts</a></p>
-                                        <h4 class="product_name"><a href="product-details.html">Nunc Neque Eros</a></h4>
+                                        <h4 class="product_name"><a href="product-details.html">{{sp.tenSanPham}}</a></h4>
                                         <div class="product_rating">
                                            <ul>
                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
@@ -219,7 +221,7 @@
                             </figure>
                         </article>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-12 ">
+                    <!-- <div class="col-lg-3 col-md-4 col-12 ">
                         <article class="single_product">
                             <figure>
                                 <div class="product_thumb">
@@ -292,8 +294,8 @@
                                 </div>
                             </figure>
                         </article>
-                    </div>
-
+                    </div> -->
+</ng-container>
                 </div>
 
                 <div class="shop_toolbar t_bottom">
