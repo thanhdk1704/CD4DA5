@@ -12,6 +12,8 @@ import { ComingsoonComponent } from './layouts/comingsoon/comingsoon.component';
 import { EmbedJsService } from './services/embed-js.service';
 import {HttpClientModule} from '@angular/common/http';
 import { CurrPipe } from './services/curr.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ChitietComponent } from './sanpham/chitiet/chitiet.component';
 // import { BaseComponent } from './base/base.component';
 
@@ -23,7 +25,7 @@ import { CurrPipe } from './services/curr.pipe';
     HeaderComponent,
     FooterComponent,
     Page404Component,
-    SanphamComponent,
+    
     DangnhapdangkyComponent,
     ComingsoonComponent,
     CurrPipe,
@@ -32,7 +34,9 @@ import { CurrPipe } from './services/curr.pipe';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,HttpClientModule
+    AppRoutingModule,HttpClientModule,
+        ReactiveFormsModule,
+        NgbModule,FormsModule
   ],
   providers: [EmbedJsService],
   bootstrap: [AppComponent]

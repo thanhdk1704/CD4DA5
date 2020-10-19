@@ -1,15 +1,21 @@
-import { Component, OnInit,NgModule } from '@angular/core';
+import { Component, OnInit,NgModule, Injector } from '@angular/core';
+import { BaseComponent } from 'src/app/services/base.component';
 
 @Component({
   selector: 'app-danhsach',
   templateUrl: './danhsach.component.html',
   styleUrls: ['./danhsach.component.css']
 })
-export class DanhsachComponent implements OnInit {
+export class DanhsachComponent extends BaseComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    injector:Injector
+  ) {super(injector) }
 breadcrum="shop";
   ngOnInit(): void {
+    setTimeout(() => {
+      this.loadScripts();
+    },);
   }
 
 }

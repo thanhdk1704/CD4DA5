@@ -2,25 +2,29 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DanhsachComponent } from './danhsach/danhsach.component';
 import { ChitietComponent } from './chitiet/chitiet.component';
-import { SanphamRoutingModule} from '../sanpham/sanpham.routing-module';
+import { SanphamRoutingModule} from '../sanpham/sanpham-routing.module';
 import { SptheoloaiComponent } from './sptheoloai/sptheoloai.component';
 import { SptheohangComponent } from './sptheohang/sptheohang.component';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { Sanphamtheoloai2Component } from './sanphamtheoloai2/sanphamtheoloai2.component';
+import { SanphamComponent } from './sanpham.component';
+import { LayoutsModule } from '../layouts/layouts.module';
+import { SpcungloaiComponent } from './spcungloai/spcungloai.component';
 
 
 
 @NgModule({
   declarations: [
+    SanphamComponent,
     DanhsachComponent,
     ChitietComponent,
      SptheoloaiComponent, 
-     SptheohangComponent, Sanphamtheoloai2Component
+     SptheohangComponent, Sanphamtheoloai2Component, SpcungloaiComponent
   ],
   imports: [
     CommonModule,
 SanphamRoutingModule,
-ReactiveFormsModule
+ReactiveFormsModule,LayoutsModule
   ]
 })
 export class SanphamModule { }

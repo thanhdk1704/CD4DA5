@@ -4,14 +4,19 @@ import { ChitietComponent } from './chitiet/chitiet.component';
 import { DanhsachComponent } from './danhsach/danhsach.component';
 import { SanphamComponent } from './sanpham.component';
 import { SptheohangComponent } from './sptheohang/sptheohang.component';
+import { SptheoloaiComponent } from './sptheoloai/sptheoloai.component';
 
 
 const routes: Routes = [
-{path:'',component:SanphamComponent},
-{
-path:'chi-tiet',component:ChitietComponent
+{path:'',component:SanphamComponent,
+children:[
+  {
+    path:'loai/:id',component:SptheoloaiComponent
+  }
+ 
+]
 },
-{path:'list',component:DanhsachComponent}
+{path:'chi-tiet/:id',component:ChitietComponent}
 ];
 
 @NgModule({

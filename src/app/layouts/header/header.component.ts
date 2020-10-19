@@ -14,8 +14,8 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     super(injector);
   }
   ngOnInit(): void {
-    this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(res => {
-      this.menus = res;
+    this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(dau => {
+      this.menus = dau;
     }); 
   }
 

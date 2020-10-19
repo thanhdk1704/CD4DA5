@@ -13,6 +13,9 @@ export class GiohangComponent extends BaseComponent implements  OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.loadScripts();
+    },);
   }
 
 }

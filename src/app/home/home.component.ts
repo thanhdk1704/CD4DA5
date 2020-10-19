@@ -9,29 +9,23 @@ import 'rxjs/add/operator/takeUntil';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent extends BaseComponent implements OnInit {
-  menus:any; 
-  list_item:any;
+  dmuccha:any; 
   constructor(injector: Injector) { 
     super(injector);
   }
  
   ngOnInit(): void {
     this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(res => {
-      this.menus = res;
-    }); 
-    // Observable.combineLatest(
-    //   this._api.get('/api/item/get-all'),
-    // ).takeUntil(this.unsubscribe).subscribe(res => {
-    //   this.list_item = res[0];
-    //   setTimeout(() => {
+      this.dmuccha = res;
+      setTimeout(() => {
         this.loadScripts();
-  //     });
-  //   }, err => { });
-  // }
-  
-  // addToCart(it) { 
-  //   this._cart.addToCart(it);
-  //   alert('Thêm thành công!'); 
-  // 
+       });
+    }); 
 }
+  
+  addToCart(it) { 
+    this._cart.addToCart(it);
+    alert('Thêm thành công!'); 
+  }
+
 }

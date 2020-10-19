@@ -4,6 +4,7 @@ import { GiohangComponent } from './giohang.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { GiohangRoutingModule } from './giohang-routing.module';
+import { LayoutsModule } from '../layouts/layouts.module';
 
 
 
@@ -14,7 +15,7 @@ import { GiohangRoutingModule } from './giohang-routing.module';
   ],
   imports: [
     CommonModule,
-ReactiveFormsModule,GiohangRoutingModule
+ReactiveFormsModule,GiohangRoutingModule,LayoutsModule
   ],
   providers:[
     

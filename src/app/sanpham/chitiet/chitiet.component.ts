@@ -1,5 +1,9 @@
 import { Component, OnInit,NgModule,Injector } from '@angular/core';
 import { BaseComponent } from '../../services/base.component';
+import 'rxjs/add/observable/combineLatest';
+import 'rxjs/add/operator/takeUntil';
+import {Observable, Subject, of, from} from 'rxjs'
+import { MinLengthValidator } from '@angular/forms';
 
 @Component({
   selector: 'app-chitiet',
@@ -8,21 +12,21 @@ import { BaseComponent } from '../../services/base.component';
 })
 export class ChitietComponent extends BaseComponent implements OnInit {
  item:any;
+ sptuongtu:any;
   constructor(injector: Injector) { 
     super(injector);
   }
   ngOnInit(): void {
-    this.item = {};
+   this.item = {};
+   this.sptuongtu=[];
     this._route.params.subscribe(params => {
       let id = params['id'];
-      this._api.get('/api/QLSanPham/detail/'+id).takeUntil(this.unsubscribe).subscribe(res => {
+      this._api.get('api/QLSanPham/detail/'+id).takeUntil(this.unsubscribe).subscribe(res => {
         this.item = res;
-        setTimeout(() => {
-          this.loadScripts();
-        });
+   
       }); 
     });
-
-  }
-
+      
+   }
+   
 }
