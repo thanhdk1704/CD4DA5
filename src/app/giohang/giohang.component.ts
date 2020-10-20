@@ -8,14 +8,32 @@ import {  combineLatest } from 'rxjs';
   styleUrls: ['./giohang.component.css']
 })
 export class GiohangComponent extends BaseComponent implements  OnInit {
+  cartitems:any;
+  total:any;
   constructor(injector: Injector) { 
     super(injector);
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.loadScripts();
-    },);
+    this._cart.items.subscribe((res) => {
+      this.cartitems = res;
+      this.total = 0;
+      for(let x of this.cartitems){ 
+        x.money = Number.parseInt(x.quantity) * Number.parseInt(x.giahientai.gia);
+        this.total += x.quantity * x.giahientai.gia;
+       
+      }  setTimeout(() => {
+          this.loadScripts();
+        },);
+    });
+  } 
+  clearCart() { 
+    this._cart.clearCart();
+    alert('Xóa thành công');
   }
-
+  addQty(item, quantity){ 
+    item.quantity =  quantity;
+    item.money =  Number.parseInt(item.quantity) *  item.item_price;
+    this._cart.addQty(item);
+  }
 }

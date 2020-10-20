@@ -257,8 +257,8 @@
                                     <div class="mini_cart_wrapper">
                                         <a href="javascript:void(0)">
                                             <i class="icon-shopping-bag2"></i>
-                                            <span class="cart_price">$152.00 <i class="ion-ios-arrow-down"></i></span>
-                                            <span class="cart_count">2</span>
+                                            <span class="cart_price">{{total_p | currency:'VND':true:'1.0-2'}} <i class="ion-ios-arrow-down"></i></span>
+                                            <span class="cart_count">{{cart_items.length}}</span>
                                         </a>
                                         <!--mini cart-->
                                         <div class="mini_cart">
@@ -271,38 +271,22 @@
                                                         <a href="javascript:void(0)"><i class="icon-x"></i></a>
                                                     </div>
                                                 </div>
-                                                <div class="cart_item">
+                                                <div class="cart_item" *ngFor="let cis of cart_items">
                                                    <div class="cart_img">
                                                        <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
                                                    </div>
                                                     <div class="cart_info">
-                                                        <a href="#">Fusce Aliquam</a>
-                                                        <p>Qty: 1 X <span> $60.00 </span></p>    
-                                                    </div>
-                                                    <div class="cart_remove">
-                                                        <a href="#"><i class="ion-android-close"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="cart_item">
-                                                   <div class="cart_img">
-                                                       <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
-                                                   </div>
-                                                    <div class="cart_info">
-                                                        <a href="#">Ras Neque Metus</a>
-                                                         <p>Qty: 1 X <span> $60.00 </span></p>    
+                                                        <a href="#">{{cis.tenSanPham}}</a>
+                                                        <p>Qty: {{cis.quantity}} X <span> {{cis.giahientai.gia | currency:'VND':true:'1.0-2'}} </span></p>    
                                                     </div>
                                                     <div class="cart_remove">
                                                         <a href="#"><i class="ion-android-close"></i></a>
                                                     </div>
                                                 </div>
                                                 <div class="mini_cart_table">
-                                                    <div class="cart_total">
-                                                        <span>Tiền:</span>
-                                                        <span class="price">$138.00</span>
-                                                    </div>
                                                     <div class="cart_total mt-10">
                                                         <span>Tổng cộng:</span>
-                                                        <span class="price">$138.00</span>
+                                                        <span class="price">{{total_p  | currency:'VND':true:'1.0-2'}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -338,23 +322,23 @@
                                 <div class="categories_menu_toggle" >
                                     <ul>
                                         <ng-container *ngFor="let mn of menus">
-                                            <ng-container *ngIf="mn.children !=null"> 
-                                        <li  class="menu_item_children"><a routerLink="shop/{{mn.link}}">{{mn.tenLoai}} <i class="fa fa-angle-right"></i></a>
+                                          
+                                        <li  *ngIf="mn.children !=null" class="menu_item_children"><a routerLink="shop/{{mn.link}}">{{mn.tenLoai}} <i class="fa fa-angle-right"></i></a>
                                             <ul class="categories_mega_menu" style="width:1000px">
                                                 <ng-container *ngFor="let ab of mn.children">
-                                                <li  class="menu_item_children"><b><a routerLink="shop/{{mn.link}}/{{ab.link}}">{{ab.tenLoai}}</a></b>
+                                                <li  class="menu_item_children"><b><a routerLink="shop/{{ab.link}}">{{ab.tenLoai}}</a></b>
                                                     <ul class="categorie_sub_menu">
                                                         <ng-container *ngFor="let abc of ab.children">
-                                                        <li><a href="shop/{{mn.link}}/{{ab.link}}/{{abc.link}}">{{abc.tenLoai}}</a></li>
+                                                        <li><a href="shop/loai/{{abc.link}}">{{abc.tenLoai}}</a></li>
                                                     </ng-container>
                                                     </ul>
                                                 </li></ng-container>
                                             </ul>
                                         </li>
-                                    <ng-container *ngIf="mn.children==null">
-                                        <li ><a routerLink="shop/{{mn.link}}">{{mn.tenLoai}}</a></li>
-                                    </ng-container>
-                                    </ng-container>
+                                    
+                                        <li *ngIf="mn.children==null"><a routerLink="shop/{{mn.link}}">{{mn.tenLoai}}</a></li>
+                                 
+                                    
                                     </ng-container>
                                         <li class="hidden"><a href="shop-left-sidebar.html">New Sofas</a></li>
                                         <li class="hidden"><a href="shop-left-sidebar.html">Sleight Sofas</a></li>

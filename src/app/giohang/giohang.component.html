@@ -37,13 +37,13 @@
                                         <tbody>
 
 
-                                            <tr>
+                                            <tr *ngFor="let ci of cartitems">
                                                <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
                                                 <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product3.jpg" alt=""></a></td>
-                                                <td class="product_name"><a href="#">Handbag elit</a></td>
-                                                <td class="product-price">£80.00</td>
-                                                <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
-                                                <td class="product_total">£160.00</td>
+                                                <td class="product_name"><a href="#">{{ci.tenSanPham}}</a></td>
+                                                <td class="product-price">{{ci.giahientai.gia}}</td>
+                                                <td class="product_quantity"><label>Số lượng</label> <input min="1" max="100" [value]="ci.quantity" type="number"></td>
+                                                <td class="product_total">{{ci.money  | currency:'VND':true:'1.0-2'}}</td>
 
 
                                             </tr>
@@ -76,7 +76,7 @@
                                     <div class="coupon_inner">
                                        <div class="cart_subtotal">
                                            <p>Tổng tiền</p>
-                                           <p class="cart_amount">7 củ</p>
+                                           <p class="cart_amount">{{total  | currency:'VND':true:'1.0-2'}}</p>
                                        </div>
                                        <div class="cart_subtotal ">
                                            <p>Shipping</p>

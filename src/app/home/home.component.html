@@ -122,7 +122,7 @@
 <ng-container *ngFor="let dmuc of dmuccha">
                 <div class="single_categories_product">
                     <div class="categories_product_thumb">
-                        <a [routerLink]="['shop',dmuc.link]"><img src="assets/img/s-product/category2.jpg" alt=""></a>
+                        <a [routerLink]="['shop',dmuc.link]"><img src="assets/img/cates/{{dmuc.anh}}"  alt="{{dmuc.tenLoai}}" style="height:120px;width: 120px;"></a>
                     </div>
                     <div class="categories_product_content">
                         <h4><a [routerLink]="['shop',dmuc.link]"> {{dmuc.tenLoai}}</a></h4>

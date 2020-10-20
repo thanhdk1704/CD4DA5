@@ -10,6 +10,8 @@ import {Observable, Subject, of, from} from 'rxjs'
 })
 export class HeaderComponent extends BaseComponent implements OnInit {
   menus:any; 
+  total_p:any;
+  cart_items:any;
   constructor(injector: Injector) { 
     super(injector);
   }
@@ -17,6 +19,15 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(dau => {
       this.menus = dau;
     }); 
+    this._cart.items.subscribe((res) => {
+      this.cart_items = res;
+      this.total_p = 0;
+      for(let x of this.cart_items){ 
+        x.money = Number.parseInt(x.quantity) * Number.parseInt(x.giahientai.gia);
+        this.total_p += x.quantity * x.giahientai.gia;
+      } 
+    });
   }
+ 
 
 }

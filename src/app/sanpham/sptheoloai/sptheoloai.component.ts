@@ -11,20 +11,37 @@ import { BaseComponent } from 'src/app/services/base.component';
 })
 export class SptheoloaiComponent extends BaseComponent implements OnInit {
 sptheoloai:any;
+index:any;
+size:any;
+tongsl:any
+
   constructor(injector:Injector) {
     super(injector);
    }
 
   ngOnInit(): void {
+    this.index=1;this.size=4;
     this.sptheoloai=[];
     this._route.params.subscribe(params => {
       let idd = params['id'];
-      this._api.get('api/QLSanPham/all-in-loai-2/'+idd).takeUntil(this.unsubscribe).subscribe(res => {
+      this._api.get('api/QLSanPham/all-in-loai-2/'+this.index+'/'+this.size+'/'+idd).takeUntil(this.unsubscribe).subscribe(res => {
         this.sptheoloai = res;
-      
+        this.tongsl=res[0].total;
       }); 
     }, err => { });
 
   }
-
+  loadPage(page) { 
+    this._route.params.subscribe(params => {
+      let id = params['id'];
+      this._api.get('api/QLSanPham/all-in-loai-2/'+page+'/'+this.size+'/'+id).takeUntil(this.unsubscribe).subscribe(res => {
+        this.sptheoloai = res.data;
+       
+        }, err => { });       
+   });   
+  }
+  addToCart(it) { 
+    this._cart.addToCart(it);
+    alert('Thêm thành công!'); 
+  }
 }
