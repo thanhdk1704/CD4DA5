@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="section_title title_style2">
                <div class="title_content">
-                   <h2><span>Sản phẩm</span> tương tự</h2>
+                   <h2><span>Sản phẩm</span> tương tự </h2> <h4><a routerLink="shop/loai/">Xem tất cả</a></h4>
                 </div>                 
             </div>
         </div>
@@ -26,7 +26,6 @@
                             </div>
                             <div class="product_content">
                                 <div class="product_content_inner">
-                                    <p class="manufacture_product"><a href="#">Parts</a></p>
                                     <h4 class="product_name"><a href="shop/chi-tiet/{{spttt.link}}">{{spttt.tenSanPham}}</a></h4>
                                     <div class="product_rating">
                                        <ul>
@@ -38,15 +37,15 @@
                                        </ul>
                                     </div>
                                     <div class="price_box"> 
-                                        <span class="old_price">$320.00</span> 
-                                        <span class="current_price">$120.00</span>
+                                        <!-- <span class="old_price">$320.00</span>  -->
+                                        <span class="current_price">{{spttt.giahientai.gia | currency:'VND'}}</span>
                                     </div>
                                 </div> 
                                 <div class="action_links">
                                      <ul>
-                                        <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
-                                        <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
-                                        <li class="compare"><a href="compare.html" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>  
+                                        <li class="add_to_cart"><a  (click)="addToCart(spttt)" title="Add to cart">Thêm vào giỏ hàng</a></li>
+                                        <li class="wishlist"><a href="wishlist.html"  title="Thêm vào danh sách yêu thích"><i class="icon-heart"></i></a></li>
+                                        <li class="compare"><a href="compare.html" title="So sánh"><i class="icon-rotate-cw"></i></a></li>  
                                     </ul>
                                 </div>  
                             </div>
@@ -231,7 +230,7 @@
                             </div> 
                             <div class="action_links">
                                  <ul>
-                                    <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to cart</a></li>
+                                    <li class="add_to_cart"><a title="Add to cart">Add to cart</a></li>
                                     <li class="wishlist"><a href="wishlist.html"  title="Add to Wishlist"><i class="icon-heart"></i></a></li>
                                     <li class="compare"><a href="compare.html" title="Add to Compare"><i class="icon-rotate-cw"></i></a></li>  
                                 </ul>

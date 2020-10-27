@@ -20,13 +20,13 @@ tongsl:any
    }
 
   ngOnInit(): void {
-    this.index=1;this.size=4;
+    this.index=1;this.size=20;
     this.sptheoloai=[];
     this._route.params.subscribe(params => {
       let idd = params['id'];
-      this._api.get('api/QLSanPham/all-in-loai-2/'+this.index+'/'+this.size+'/'+idd).takeUntil(this.unsubscribe).subscribe(res => {
+      this._api.get('api/QLSanPham/all-in-loai/'+this.index+'/'+this.size+'/'+idd).takeUntil(this.unsubscribe).subscribe(res => {
         this.sptheoloai = res;
-        this.tongsl=res[0].total;
+      
       }); 
     }, err => { });
 
@@ -34,9 +34,9 @@ tongsl:any
   loadPage(page) { 
     this._route.params.subscribe(params => {
       let id = params['id'];
-      this._api.get('api/QLSanPham/all-in-loai-2/'+page+'/'+this.size+'/'+id).takeUntil(this.unsubscribe).subscribe(res => {
-        this.sptheoloai = res.data;
-       
+      this._api.get('api/QLSanPham/all-in-loai/'+this.index+'/'+this.size+'/'+id).takeUntil(this.unsubscribe).subscribe(res => {
+        this.sptheoloai = res;
+        this.tongsl=res[0].total;
         }, err => { });       
    });   
   }
@@ -44,4 +44,5 @@ tongsl:any
     this._cart.addToCart(it);
     alert('Thêm thành công!'); 
   }
+ 
 }

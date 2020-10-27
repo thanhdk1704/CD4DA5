@@ -31,7 +31,7 @@
                         </form>
                     </div>
                     <div class="page_amount">
-                        <p>Showing 1–9 of {{sptheoloai[0].total}} results</p>
+                        <p>Có {{tongsl}} sản phẩm</p>
                     </div>
                 </div>
                  <!--shop toolbar end-->
@@ -41,7 +41,7 @@
                         <article class="single_product">
                             <figure>
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html"><img src="assets/img/product/product1.jpg" alt=""></a>
+                                    <a class="primary_img"[routerlink]="['chi-tiet/',sploai.link]"><img src="assets/img/product/product1.jpg" alt=""></a>
                                     <a class="secondary_img" href="product-details.html"><img src="assets/img/product/product2.jpg" alt=""></a>
                                     <div class="label_product">
                                         <span class="label_new">-56%</span>
@@ -116,7 +116,7 @@
 
                 <div class="shop_toolbar t_bottom">
                     <div class="pagination">
-                        <ngb-pagination [collectionSize]="tongsl" [pageSize]="size" [(page)]="index" [maxSize]="10" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+
                     </div>
                 </div>
                 <!--shop toolbar end-->

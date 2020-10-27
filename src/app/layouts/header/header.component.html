@@ -213,7 +213,7 @@
                                 <ul>
                                     <li><a href="login.html">Theo dõi đơn hàng</a></li>
                                     <li><a href="login.html">Đăng nhập-đăng ký</a></li>
-                                    <li><a href="cart.html">Giỏ hàng</a></li>
+                                    <li><a routerLink="cart">Giỏ hàng</a></li>
                                     <li><a href="checkout.html">Kênh bán hàng</a></li>
                                 </ul>
                             </div>   
@@ -261,7 +261,7 @@
                                             <span class="cart_count">{{cart_items.length}}</span>
                                         </a>
                                         <!--mini cart-->
-                                        <div class="mini_cart">
+                                        <div class="mini_cart" style="overflow-y:auto;">
                                             <div class="mini_cart_inner">
                                                 <div class="cart_close">
                                                     <div class="cart_text">
@@ -273,10 +273,10 @@
                                                 </div>
                                                 <div class="cart_item" *ngFor="let cis of cart_items">
                                                    <div class="cart_img">
-                                                       <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
+                                                       <a routerLink="shop/chi-tiet/{{cis.link}}"><img src="assets/img/s-product/product.jpg" alt=""></a>
                                                    </div>
                                                     <div class="cart_info">
-                                                        <a href="#">{{cis.tenSanPham}}</a>
+                                                        <a routerLink="shop/chi-tiet/{{cis.link}}">{{cis.tenSanPham}}</a>
                                                         <p>Qty: {{cis.quantity}} X <span> {{cis.giahientai.gia | currency:'VND':true:'1.0-2'}} </span></p>    
                                                     </div>
                                                     <div class="cart_remove">
@@ -292,7 +292,7 @@
                                             </div>
                                             <div class="mini_cart_footer">
                                                <div class="cart_button">
-                                                    <a href="cart.html">Xem giỏ hàng</a>
+                                                    <a routerLink="cart">Xem giỏ hàng</a>
                                                 </div>
                                                 <div class="cart_button">
                                                     <a class="active" href="checkout.html">Đặt hàng</a>
@@ -329,7 +329,7 @@
                                                 <li  class="menu_item_children"><b><a routerLink="shop/{{ab.link}}">{{ab.tenLoai}}</a></b>
                                                     <ul class="categorie_sub_menu">
                                                         <ng-container *ngFor="let abc of ab.children">
-                                                        <li><a href="shop/loai/{{abc.link}}">{{abc.tenLoai}}</a></li>
+                                                        <li><a href="shop/{{abc.link}}">{{abc.tenLoai}}</a></li>
                                                     </ng-container>
                                                     </ul>
                                                 </li></ng-container>

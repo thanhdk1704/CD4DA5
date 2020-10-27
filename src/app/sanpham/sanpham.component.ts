@@ -16,14 +16,7 @@ export class SanphamComponent extends BaseComponent implements OnInit {
   list_item:any;
   menus2:any;
   ngOnInit(): void {
-    Observable.combineLatest(
-      this._api.get('api/QLSanPham/all-with-details'),
-    ).takeUntil(this.unsubscribe).subscribe(res => {
-      this.list_item = res[0];
-      setTimeout(() => {
-        this.loadScripts();
-      });
-    }, err => { });
+
     this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(res => {
       this.menus2 = res;
      

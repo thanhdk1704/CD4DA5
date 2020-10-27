@@ -27,5 +27,9 @@ export class SpcungloaiComponent extends BaseComponent implements OnInit {
        }); 
      });
   }
+  addToCart(it) { 
+    this._cart.addToCart(it);
+    alert('Thêm thành công!'); 
+  }
 
 }

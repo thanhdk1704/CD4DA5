@@ -8,7 +8,7 @@ export class PersonalizedService {
   private itemsSubject = new BehaviorSubject<any[]>([]);
   items = this.itemsSubject.asObservable();
   constructor() {
-    let local_storage = JSON.parse(localStorage.getItem('psnlz'+'makhach'));
+    let local_storage = JSON.parse(localStorage.getItem('sp-vua-xem'));
     let Spvuaxem:any[];
     if (!local_storage) {
       local_storage = [];

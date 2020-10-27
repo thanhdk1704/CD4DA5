@@ -22,14 +22,18 @@ export class GiohangComponent extends BaseComponent implements  OnInit {
         x.money = Number.parseInt(x.quantity) * Number.parseInt(x.giahientai.gia);
         this.total += x.quantity * x.giahientai.gia;
        
-      }  setTimeout(() => {
-          this.loadScripts();
-        },);
-    });
+      }  
+    });setTimeout(() => {
+      this.loadScripts();
+    },);
   } 
   clearCart() { 
     this._cart.clearCart();
     alert('Xóa thành công');
+  }
+  deleteItem(item){
+    this._cart.deleteItem(item);
+  
   }
   addQty(item, quantity){ 
     item.quantity =  quantity;

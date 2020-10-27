@@ -17,10 +17,12 @@
 <!--shopping cart area start -->
 <div class="cart_page_bg">
     <div class="container">
-        <div class="shopping_cart_area">
+        <div class="shopping_cart_area" *ngIf="cartitems.length==0">Chưa có sản phẩm trong giỏ hàng</div>
+        <div class="shopping_cart_area" *ngIf="cartitems.length!=0">
             <form action="#"> 
                     <div class="row">
-                        <div class="col-12">
+                      
+                        <div class="col-12" >
                             <div class="table_desc">
                                 <div class="cart_page table-responsive">
                                     <table>
@@ -38,7 +40,7 @@
 
 
                                             <tr *ngFor="let ci of cartitems">
-                                               <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                               <td class="product_remove"><a (click)="deleteItem(ci.maSanPham)"><i class="fa fa-trash-o"></i></a></td>
                                                 <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product3.jpg" alt=""></a></td>
                                                 <td class="product_name"><a href="#">{{ci.tenSanPham}}</a></td>
                                                 <td class="product-price">{{ci.giahientai.gia}}</td>
@@ -56,6 +58,7 @@
                                 </div>      
                             </div>
                          </div>
+                         
                      </div>
                      <!--coupon code area start-->
                     <div class="coupon_area">
