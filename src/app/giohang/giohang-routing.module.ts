@@ -7,7 +7,7 @@ import { GiohangComponent } from './giohang.component';
 const routes: Routes = [
 {path:'',component:GiohangComponent
 },
-{path:'thanh-toan',component:CheckoutComponent}
+{path:'check-out',component:CheckoutComponent}
 ];
 
 @NgModule({
