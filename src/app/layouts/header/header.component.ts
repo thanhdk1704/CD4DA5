@@ -3,6 +3,7 @@ import { BaseComponent } from 'src/app/services/base.component';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/takeUntil';
 import {Observable, Subject, of, from} from 'rxjs'
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,12 +11,15 @@ import {Observable, Subject, of, from} from 'rxjs'
 })
 export class HeaderComponent extends BaseComponent implements OnInit {
   menus:any; 
+  today:any;
   total_p:any;
   cart_items:any;
   constructor(injector: Injector) { 
     super(injector);
   }
   ngOnInit(): void {
+    this.today=new DatePipe((Date()));
+    console.log(this.today);
     this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(dau => {
       this.menus = dau;
     }); 
