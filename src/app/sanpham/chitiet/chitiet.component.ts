@@ -28,5 +28,9 @@ export class ChitietComponent extends BaseComponent implements OnInit {
     });
       
    }
+   addToCart2(sl,it){
+    
+      this._cart.addToCart2(sl,it);
+    }
    
 }

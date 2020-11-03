@@ -41,10 +41,10 @@
 
                                             <tr *ngFor="let ci of cartitems">
                                                <td class="product_remove"><a (click)="deleteItem(ci.maSanPham)"><i class="fa fa-trash-o"></i></a></td>
-                                                <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product3.jpg" alt=""></a></td>
+                                                <td class="product_thumb"><a href="#"><img style="height: 100px;width:100px;" src="assets/img/product/{{ci.anh}}" alt=""></a></td>
                                                 <td class="product_name"><a href="#">{{ci.tenSanPham}}</a></td>
                                                 <td class="product-price">{{ci.giahientai.gia}}</td>
-                                                <td class="product_quantity"><label>Số lượng</label> <input min="1" max="100" [value]="ci.quantity" type="number"></td>
+                                                <td class="product_quantity"><label>Số lượng</label> <input min="1" max="100" #inp [value]="ci.quantity" (change)="addQty(ci,inp.value)" type="number"></td>
                                                 <td class="product_total">{{ci.money  | currency:'VND':true:'1.0-2'}}</td>
 
 

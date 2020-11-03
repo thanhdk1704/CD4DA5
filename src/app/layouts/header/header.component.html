@@ -239,7 +239,7 @@
                                 <div class="search_container">
                                     <form action="#">
                                        <div class="hover_category">
-                                            <select class="form-control" style="border: none;" name="select" id="categori2">
+                                            <select class="btn btn-default" style="border: none;" name="select" id="categori2">
                                                 <option selected value="all">Tất cả danh mục</option>
                                                 <option *ngFor="let item of menus" value="{{item.MaLoai}}">{{item.tenLoai}}</option>
                                             </select>                        
@@ -275,7 +275,7 @@
                                                 </div>
                                                 <div class="cart_item" *ngFor="let cis of cart_items">
                                                    <div class="cart_img">
-                                                       <a routerLink="shop/chi-tiet/{{cis.link}}"><img src="assets/img/s-product/product.jpg" alt=""></a>
+                                                       <a routerLink="shop/chi-tiet/{{cis.link}}"><img style="widows: 100px;height:100px" src="assets/img/product/{{cis.anh}}" alt=""></a>
                                                    </div>
                                                     <div class="cart_info">
                                                         <a routerLink="shop/chi-tiet/{{cis.link}}">{{cis.tenSanPham}}</a>

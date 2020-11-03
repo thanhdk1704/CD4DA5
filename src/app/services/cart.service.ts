@@ -51,7 +51,29 @@ export class CartService {
     localStorage.setItem('cart', JSON.stringify(local_storage));
     this.itemsSubject.next(local_storage);
   }
-
+  addToCart2(sl,item){
+    debugger;
+    item.quantity = Number.parseInt(sl);
+    let local_storage:any;
+    if (localStorage.getItem('cart') == null) {
+      local_storage = [item];
+    } else {
+      local_storage = JSON.parse(localStorage.getItem('cart'));
+      let ok = true;
+      for (let x of local_storage) {
+        if (x.maSanPham == item.maSanPham) {
+          x.quantity += Number.parseInt(sl);
+          ok = false;
+          break;
+        }
+      }
+      if(ok){
+        local_storage.push(item); 
+      } 
+    }
+    localStorage.setItem('cart', JSON.stringify(local_storage));
+    this.itemsSubject.next(local_storage);
+  }
   addQty(item) {
     let local_storage = JSON.parse(localStorage.getItem('cart'));
     for (let x of local_storage) {

@@ -44,4 +44,10 @@ tongsl2:any;
     alert('Thêm thành công!'); 
   }
  
+  sortByPriceI(arr){
+    arr=arr.sort(function(a,b){
+      return b.tenSanPham-a.tenSanPham;
+    }
+    )
+  }
 }

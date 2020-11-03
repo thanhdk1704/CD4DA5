@@ -220,7 +220,7 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let c of cartitems">
-                                                <td>{{cartitems.indexOf(c)+1}}</td>
+                                                <td><img style="height: 100px;width:100px;" src="assets/img/product/{{c.anh}}"  alt="{{c.tenSanPham}}"></td>
                                                 <td> {{c.tenSanPham}}	 <strong> × {{c.quantity}}</strong></td>
                                                 <td> {{c.giahientai.gia |currency:'VND'}}</td>
                                                 <td>{{c.money |currency:'VND'}}</td>
