@@ -52,7 +52,7 @@ export class CartService {
     this.itemsSubject.next(local_storage);
   }
   addToCart2(sl,item){
-    debugger;
+ 
     item.quantity = Number.parseInt(sl);
     let local_storage:any;
     if (localStorage.getItem('cart') == null) {

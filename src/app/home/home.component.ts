@@ -10,19 +10,30 @@ import 'rxjs/add/operator/takeUntil';
 })
 export class HomeComponent extends BaseComponent implements OnInit {
   dmuccha:any; 
+  spchay:any;
+  thang:any;
   constructor(injector: Injector) { 
     super(injector);
   }
  
   ngOnInit(): void {
+    this.thang=0;
     this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(res => {
       this.dmuccha = res;
       setTimeout(() => {
         this.loadScripts();
        });
-    }); 
+    });
+    this.spBanChay(); 
 }
-  
+ spBanChay(){
+   this.thang=new Date();
+   let t=this.thang.getMonth()+1;
+  this._api.get('api/QLSanPham/ban-chay/s0001/'+t).takeUntil(this.unsubscribe).subscribe(res => {
+    this.spchay = res;
+
+  }); 
+ } 
   addToCart(it) { 
     this._cart.addToCart(it);
     alert('Thêm thành công!'); 

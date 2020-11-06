@@ -282,7 +282,7 @@
                                                         <p>Qty: {{cis.quantity}} X <span> {{cis.giahientai.gia | currency:'VND':true:'1.0-2'}} </span></p>    
                                                     </div>
                                                     <div class="cart_remove">
-                                                        <a href="#"><i class="ion-android-close"></i></a>
+                                                        <a (click)="deleteItem(cis)"><i class="ion-android-close"></i></a>
                                                     </div>
                                                 </div>
                                                 <div class="mini_cart_table">
@@ -353,14 +353,14 @@
                             <div class="main_menu menu_position text-left"> 
                                 <nav>  
                                     <ul>
-                                        <li><a class="active"  href="index.html">home<i class="fa fa-angle-down"></i></a>
+                                        <!-- <li><a class="active"  href="index.html">home<i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu">
                                                 <li><a href="index.html">Home shop 1</a></li>
                                                 <li><a href="index-2.html">Home shop 2</a></li>
                                                 <li><a href="index-3.html">Home shop 3</a></li>
                                                 <li><a href="index-4.html">Home shop 4</a></li>
                                             </ul>
-                                        </li>
+                                        </li> -->
                                         <li class="mega_items"><a href="#">Shop<i class="fa fa-angle-down"></i></a> 
                                             <div class="mega_menu" >
                                                 <ul class="mega_menu_inner">
@@ -378,7 +378,7 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
+                                        <li><a href="blog.html">Khuyến Mãi<i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
                                                 <li><a href="blog-details.html">blog details</a></li>
                                                 <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
@@ -386,7 +386,7 @@
                                                 <li><a href="blog-no-sidebar.html">blog no sidebar</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
+                                        <!-- <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
                                                 <li><a href="about.html">About Us</a></li>
                                                 <li><a href="faq.html">Frequently Questions</a></li>
@@ -397,7 +397,7 @@
                                                 <li><a href="privacy-policy.html">privacy policy</a></li>
                                                 <li><a href="coming-soon.html">coming soon</a></li>
                                             </ul>
-                                        </li>
+                                        </li> -->
 
                                         <li><a href="about.html">Giới thiệu</a></li>
                                         <li><a href="contact.html"> Liên hệ</a></li><!--this is the one-->
