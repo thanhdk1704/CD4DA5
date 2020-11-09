@@ -15,5 +15,8 @@ export class DangnhapdangkyComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.loadScripts();
   }
+  dangNhap(){
+    
+  }
 
 }
