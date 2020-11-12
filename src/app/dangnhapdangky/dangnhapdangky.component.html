@@ -23,22 +23,23 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="account_form login">
                         <h2>Đăng nhập</h2>
-                        <form action="#">
+                        <form [formGroup]="formdata" (ngSubmit)="dangNhap(formdata.value)">
                             <p>   
-                                <label>Tên tài khoản, email, số điện thoại <span>*</span></label>
-                                <input type="text">
+                                <label>Tên tài khoản hoặc email <span>*</span></label>
+                                <input formControlName="tendangnhap" autocomplete="on" type="text">
                              </p>
                              <p>   
                                 <label>Mật khẩu <span>*</span></label>
-                                <input type="password">
+                                <input formControlName="matkhau"  type="password">
                              </p>   
                             <div class="login_submit">
-                               <a href="#">Lost your password?</a>
+                               <a href="#">Quên mật khẩu</a>
                                 <label for="remember">
                                     <input id="remember" type="checkbox">
                                     Ghi nhớ đăng nhập
                                 </label>
-                                <button type="submit">Đăng nhập</button>
+                                <button *ngIf="!submitted" type="submit">Đăng nhập</button>
+                                <button  *ngIf="submitted" type="button">Đăng nhập</button>
 
                             </div>
 

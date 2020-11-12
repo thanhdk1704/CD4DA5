@@ -35,7 +35,8 @@
                     <div class="header_top_links">
                         <ul>
                             <li><a href="login.html">nút</a></li>
-                            <li><a href="login">Đăng nhập-đăng ký</a></li>
+                            <li *ngIf="tf==false"><a href="login">Đăng nhập-đăng ký</a></li>
+                            <li *ngIf="tf==true"><a href="login">Tài khoản</a></li>
                             <li><a href="cart.html">Giỏ hàng</a></li>
                             <li><a href="checkout.html">Kênh bán hàng</a></li>
                         </ul>
@@ -214,7 +215,8 @@
                             <div class="header_top_links text-right">
                                 <ul>
                                     <li><a href="login.html">Theo dõi đơn hàng</a></li>
-                                    <li><a routerLink="login">Đăng nhập-đăng ký</a></li>
+                                    <li *ngIf="account.length==0"><a href="login">Đăng nhập-đăng ký</a></li>
+                                    <li *ngIf="account.length==1"><a href="login">{{account.taiKhoan.tk}}</a></li>
                                     <li><a routerLink="cart">Giỏ hàng</a></li>
                                     <li><a routerLink="cart/check-out">Kênh bán hàng</a></li>
                                 </ul>
@@ -252,8 +254,8 @@
                                 </div>
                                 <div class="header_configure_area">
                                     <div class="header_wishlist">
-                                        <a href="wishlist.html"><i class="icon-heart"></i>
-                                            <span class="wishlist_count">3</span>
+                                        <a href="wishlist"><i class="icon-heart"></i>
+                                            <span class="wishlist_count">{{total_w}}</span>
                                         </a>
                                     </div>
                                     <div class="mini_cart_wrapper">
@@ -325,10 +327,10 @@
                                     <ul>
                                         <ng-container *ngFor="let mn of menus">
                                           
-                                        <li  *ngIf="mn.children !=null" class="menu_item_children"><a routerLink="shop/{{mn.link}}">{{mn.tenLoai}} <i class="fa fa-angle-right"></i></a>
+                                        <li  *ngIf="mn.children !=null" class="menu_item_children"><a href="shop/danh-muc/{{mn.link}}">{{mn.tenLoai}} <i class="fa fa-angle-right"></i></a>
                                             <ul class="categories_mega_menu" style="width:1000px">
                                                 <ng-container *ngFor="let ab of mn.children">
-                                                <li  class="menu_item_children"><b><a routerLink="shop/{{ab.link}}">{{ab.tenLoai}}</a></b>
+                                                <li  class="menu_item_children"><b><a routerLink="shop/loai-1/{{ab.link}}">{{ab.tenLoai}}</a></b>
                                                     <ul class="categorie_sub_menu">
                                                         <ng-container *ngFor="let abc of ab.children">
                                                         <li><a href="shop/{{abc.link}}">{{abc.tenLoai}}</a></li>

@@ -10,6 +10,7 @@ import { Sanphamtheoloai2Component } from './sanphamtheoloai2/sanphamtheoloai2.c
 import { SanphamComponent } from './sanpham.component';
 import { LayoutsModule } from '../layouts/layouts.module';
 import { SpcungloaiComponent } from './spcungloai/spcungloai.component';
+import { Sanphamtheoloai1Component } from './sanphamtheoloai1/sanphamtheoloai1.component';
 
 
 
@@ -19,7 +20,7 @@ import { SpcungloaiComponent } from './spcungloai/spcungloai.component';
     DanhsachComponent,
     ChitietComponent,
      SptheoloaiComponent, 
-     SptheohangComponent, Sanphamtheoloai2Component, SpcungloaiComponent
+     SptheohangComponent, Sanphamtheoloai2Component, SpcungloaiComponent, Sanphamtheoloai1Component
   ],
   imports: [
     CommonModule,

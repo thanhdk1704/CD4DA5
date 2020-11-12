@@ -13,11 +13,15 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   menus:any; 
   today:any;
   total_p:any;
+  total_w:any;
   cart_items:any;
+  account:any;
+  tf:any;
   constructor(injector: Injector) { 
     super(injector);
   }
   ngOnInit(): void {
+    this.tf=true;
     this.today=new DatePipe((Date()));
     console.log(this.today);
     this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(dau => {
@@ -30,6 +34,18 @@ export class HeaderComponent extends BaseComponent implements OnInit {
         x.money = Number.parseInt(x.quantity) * Number.parseInt(x.giahientai.gia);
         this.total_p += x.quantity * x.giahientai.gia;
       } 
+    });console.log(this.tf);
+    this._wishlist.items.subscribe((res) => {
+      let wishlist = res;
+      this.total_w = wishlist.length;
+      
+    });
+    this.taiKhoan();
+  }
+  taiKhoan(){
+    this._login.items.subscribe((res) => {
+      this.account = res;
+     console.log(this.account);
     });
   }
   deleteItem(item){

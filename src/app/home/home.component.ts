@@ -12,6 +12,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   dmuccha:any; 
   spchay:any;
   thang:any;
+
   constructor(injector: Injector) { 
     super(injector);
   }
@@ -25,7 +26,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
        });
     });
     this.spBanChay(); 
+   
 }
+
  spBanChay(){
    this.thang=new Date();
    let t=this.thang.getMonth()+1;
@@ -37,6 +40,10 @@ export class HomeComponent extends BaseComponent implements OnInit {
   addToCart(it) { 
     this._cart.addToCart(it);
     alert('Thêm thành công!'); 
+  }
+  addToWishlist(it) { 
+    this._wishlist.addToWishlist(it);
+    alert('đã thêm vào danh sách yêu thích!'); 
   }
 
 }

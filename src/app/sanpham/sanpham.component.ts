@@ -2,7 +2,8 @@ import { Component, OnInit,Injector,Output } from '@angular/core';
 import { BaseComponent } from '../services/base.component';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/takeUntil';
-import {Observable, Subject, of, from} from 'rxjs'
+import {Observable, Subject, of, from} from 'rxjs';
+
 @Component({
   selector: 'app-sanpham',
   templateUrl: './sanpham.component.html',

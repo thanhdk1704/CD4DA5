@@ -43,6 +43,10 @@ tongsl2:any;
     this._cart.addToCart(it);
     alert('Thêm thành công!'); 
   }
+  addToWishlist(it) { 
+    this._wishlist.addToWishlist(it);
+    alert('đã thêm vào danh sách yêu thích!'); 
+  }
  
   sortByPriceI(arr){
     arr=arr.sort(function(a,b){

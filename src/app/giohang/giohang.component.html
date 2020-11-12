@@ -82,17 +82,16 @@
                                            <p class="cart_amount">{{total  | currency:'VND':true:'1.0-2'}}</p>
                                        </div>
                                        <div class="cart_subtotal ">
-                                           <p>Shipping</p>
-                                           <p class="cart_amount"><span></span></p>
+                                           <p>phí vận chuyển</p>
+                                           <p class="cart_amount"><span>30,000</span></p>
                                        </div>
-                                       <a href="#">Calculate shipping</a>
-
+                                  
                                        <div class="cart_subtotal">
                                            <p>Tổng cộng</p>
-                                           <p class="cart_amount">£215.00</p>
+                                           <p class="cart_amount">{{total+30000|currency:'VND'}}</p>
                                        </div>
                                        <div class="checkout_btn">
-                                           <a href="#">Tiến hành đặt hàng</a>
+                                           <a href="cart/check-out">Tiến hành đặt hàng</a>
                                        </div>
                                     </div>
                                 </div>
