@@ -12,7 +12,7 @@ declare var $:any;
 })
 export class DangnhapdangkyComponent extends BaseComponent implements OnInit {
   formdata:any;taikhoan:any;
-  public submitted:any;
+  public submitted:any;submit_error:any;
   constructor(private router: Router,private fb:FormBuilder,injector: Injector) { 
     super(injector);
   }
@@ -23,7 +23,9 @@ export class DangnhapdangkyComponent extends BaseComponent implements OnInit {
     this.loadScripts();
   }
   dangNhap(value){
+    let errorbar=document.getElementById('error_bar');
     this.submitted=true;
+    this.submit_error=false;
     let tmp={
       tk:value.tendangnhap,
       emk:value.matkhau,
@@ -32,12 +34,21 @@ export class DangnhapdangkyComponent extends BaseComponent implements OnInit {
     this._api.post('api/QLKhachHang/login',tmp).takeUntil(this.unsubscribe).subscribe(res => {
     this.taikhoan=res;
     if(this.taikhoan) {
+    
+      
       this._login.login(this.taikhoan);
-      console.log(this.taikhoan);
+     alert('đăng nhập thành công');
       this.router.navigate(['/']);
     }
+   
     else
-    {}
+    {
+      this.submitted=false;
+      this.submit_error=true;
+      errorbar.style.display='';
+      document.getElementById('error_type').innerHTML='Đăng nhập thất bại!';
+      document.getElementById('error_message').innerHTML='Tên tài khoản hoặc mật khẩu không chính xác';
+    }
       }, err => { });       
   }
   formLogin(){

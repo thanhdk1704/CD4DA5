@@ -17,10 +17,13 @@ export class LoginService {
   
   login(account){
     let local_storage=[];
-    if(account) local_storage.push(account);
+    if(localStorage.getItem('account') == null && account!=[])
+    local_storage=[account];
+    localStorage.setItem('account', JSON.stringify(local_storage));
+    this.itemsSubject.next(local_storage);
   }
 logOut(){
-  localStorage.clear();
+  localStorage.removeItem('account');
   this.itemsSubject.next(null);
 }
   getAccount() {

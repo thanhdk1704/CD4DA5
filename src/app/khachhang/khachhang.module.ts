@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { KhachhangRoutingModule } from './khachhang.routing-module';
 import { TaikhoanComponent } from './taikhoan/taikhoan.component';
 import { KhachhangComponent } from './khachhang.component';
-import { SuathongtinComponent } from './suathongtin/suathongtin.component';
+
 import { DsdonhangComponent } from './dsdonhang/dsdonhang.component';
 import { CtdonhangComponent } from './ctdonhang/ctdonhang.component';
+import { LayoutsModule } from '../layouts/layouts.module';
+import { DiachiComponent } from './diachi/diachi.component';
 
 
 
@@ -14,13 +16,14 @@ import { CtdonhangComponent } from './ctdonhang/ctdonhang.component';
   declarations: [
     TaikhoanComponent,
     KhachhangComponent,
-    SuathongtinComponent,
+  
     DsdonhangComponent,
-    CtdonhangComponent
+    CtdonhangComponent,
+    DiachiComponent
   ],
   imports: [
     CommonModule,
-KhachhangRoutingModule
+KhachhangRoutingModule,LayoutsModule
   ]
 })
 export class KhachhangModule { }

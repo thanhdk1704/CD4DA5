@@ -18,19 +18,32 @@
 <div class="login_page_bg">
     <div class="container">
         <div class="customer_login">
+            <div id ="error_bar" style="display: none;" class="alert alert-danger" >
+                <a class="close" onclick="$('errorbar').css('display','none')">&times;</a>
+                 <strong id="error_type"></strong> &nbsp;
+                 <span id="error_message"></span>
+                        </div>
             <div class="row">
+                
                <!--login area start-->
                 <div class="col-lg-6 col-md-6">
+
                     <div class="account_form login">
                         <h2>Đăng nhập</h2>
                         <form [formGroup]="formdata" (ngSubmit)="dangNhap(formdata.value)">
                             <p>   
                                 <label>Tên tài khoản hoặc email <span>*</span></label>
                                 <input formControlName="tendangnhap" autocomplete="on" type="text">
+                                <span *ngIf="submitted && f.tendangnhap.errors" class="invalid-feedback">
+                                    <span *ngIf="f.tendangnhap.errors.required" style="color: rgb(189, 27, 27);">Vui lòng nhập email hoặc tên đăng nhập</span>
+                                </span>
                              </p>
                              <p>   
                                 <label>Mật khẩu <span>*</span></label>
                                 <input formControlName="matkhau"  type="password">
+                                <span *ngIf="submitted && f.matkhau.errors" class="invalid-feedback">
+                                    <span *ngIf="f.matkhau.errors.required" style="color: rgb(189, 27, 27);">Vui lòng nhập mật khẩu</span>
+                                </span>
                              </p>   
                             <div class="login_submit">
                                <a href="#">Quên mật khẩu</a>

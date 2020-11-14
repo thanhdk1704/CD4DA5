@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BaseComponent } from 'src/app/services/base.component';
 
 @Component({
@@ -17,22 +17,14 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
   xas:any;
   summited=false;
   ab:any;
-  constructor(injector: Injector) {
+  constructor(private fb:FormBuilder,injector: Injector) {
     super(injector);
   }
 
   ngOnInit(): void {
     this.gettinh();
     this.ab=1;
-    this.formdonhang = new FormGroup({
-      hoten: new FormControl('', Validators.required),
-      tinh: new FormControl('',Validators.required), 
-      huyen: new FormControl('',Validators.required), 
-      xa: new FormControl('',Validators.required), 
-      sdt : new FormControl(''),
-      diachi:new FormControl(''),
-      email: new FormControl('',[Validators.email,Validators.required]), 
-    });
+  
     this._cart.items.subscribe((res) => {
       this.cartitems = res;
       this.total = 0;
@@ -46,7 +38,20 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
     });setTimeout(() => {
       this.loadScripts();
     },);
+    this.FormTTDonHang();
   }
+  FormTTDonHang(){
+    this.formdonhang = this.fb.group({
+      hoten:['', Validators.required],
+      tinh:['', Validators.required], 
+      huyen: ['', Validators.required], 
+      xa: ['', Validators.required], 
+      sdt : ['', Validators.required],
+      diachi:[''],
+      email: ['', Validators.required]
+    });
+  }
+  get f() { return this.formdonhang.controls; }
   gettinh(){
     this._api.get('api/QLDonHang/get-all-tinh').takeUntil(this.unsubscribe).subscribe(dau => {
       this.tinhs = dau;
@@ -71,8 +76,41 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
     });}
     
   }
-   themdonhang(){
+   themdonhang(value){
     this.summited=true;
+    let tg=[];
+    this.cartitems.forEach(element => {
+      let singleitem={
+        "maSanPham":element.maSanPham,
+        "tenSanPham":element.tenSanPham,
+        "anh":element.anh,
+        "link":element.link,
+        "quantity":Number.parseInt(element.quantity),
+        "donGia":Number.parseInt(element.giahientai.gia)
+    };
+    tg.push(singleitem);
+    });
+      let hoadon = {
+       maKH:null,
+       maShop:'S0001',
+       thanhToan:1,
+       maDiaChi:null,
+       chitiet:tg,
+         tenKH:value.hoten,
+         email:value.email,
+        soDienThoai:value.sdt,
+        xa:Number.parseInt(value.xa),
+        huyen:Number.parseInt(value.huyen),
+        tinh:Number.parseInt(value.tinh),
+        dcChitiet:value.diachi,
+       };debugger; console.log(hoadon);
+       
+      this._api.post('api/QLDonHang/them', hoadon).takeUntil(this.unsubscribe).subscribe(res => {
+        
+        alert('Đặt hàng thành công');
+         }, err => { });      
+   
+    
   }
   }
   

@@ -58,7 +58,7 @@ export class WishlistService {
   }
 
   clearWishlist() {
-   localStorage.clear();
+   localStorage.removeItem('wishlist');
    this.itemsSubject.next(null);
   }
 }

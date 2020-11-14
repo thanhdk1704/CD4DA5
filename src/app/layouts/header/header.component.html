@@ -36,7 +36,7 @@
                         <ul>
                             <li><a href="login.html">nút</a></li>
                             <li *ngIf="tf==false"><a href="login">Đăng nhập-đăng ký</a></li>
-                            <li *ngIf="tf==true"><a href="login">Tài khoản</a></li>
+                             <li *ngIf="tf==true" class="main_menu menu_position text-left"><a href="login">Tài khoản</a></li>
                             <li><a href="cart.html">Giỏ hàng</a></li>
                             <li><a href="checkout.html">Kênh bán hàng</a></li>
                         </ul>
@@ -214,9 +214,17 @@
                         <div class="col-lg-8 col-md-7">
                             <div class="header_top_links text-right">
                                 <ul>
-                                    <li><a href="login.html">Theo dõi đơn hàng</a></li>
+                                    
                                     <li *ngIf="account.length==0"><a href="login">Đăng nhập-đăng ký</a></li>
-                                    <li *ngIf="account.length==1"><a href="login">{{account.taiKhoan.tk}}</a></li>
+                                     <li *ngIf="account.length!=0" class="tkhover"><a href="account">Tài khoản <i class="fa fa-angle-down"></i></a>
+                                    <ul class="sub-menu-account">
+                                        <li><a href="blog-details.html">thông tin</a></li>
+                                        <li><a href="blog-fullwidth.html">Khuyến mãi</a></li>
+                                        <li><a href="blog-sidebar.html">Đơn hàng</a></li>
+                                        <li><a (click)="logout()">Đăng xuất</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="login.html">Theo dõi đơn hàng</a></li>
                                     <li><a routerLink="cart">Giỏ hàng</a></li>
                                     <li><a routerLink="cart/check-out">Kênh bán hàng</a></li>
                                 </ul>

@@ -48,6 +48,9 @@ export class HeaderComponent extends BaseComponent implements OnInit {
      console.log(this.account);
     });
   }
+  logout(){
+    this._login.logOut();
+  }
   deleteItem(item){
     this._cart.deleteItem(item.maSanPham);
   }
