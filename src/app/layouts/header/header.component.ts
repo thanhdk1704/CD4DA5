@@ -45,11 +45,13 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   taiKhoan(){
     this._login.items.subscribe((res) => {
       this.account = res;
-     console.log(this.account);
+     
     });
   }
   logout(){
     this._login.logOut();
+     alert('đã đăng xuất');
+    window.location.replace('');
   }
   deleteItem(item){
     this._cart.deleteItem(item.maSanPham);

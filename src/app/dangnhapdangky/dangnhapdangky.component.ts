@@ -33,12 +33,24 @@ export class DangnhapdangkyComponent extends BaseComponent implements OnInit {
     }
     this._api.post('api/QLKhachHang/login',tmp).takeUntil(this.unsubscribe).subscribe(res => {
     this.taikhoan=res;
+    if(this.formdata.get('tendangnhap')=='')
+    {
+      errorbar.style.display='';
+      document.getElementById('error_type').innerHTML='Đăng nhập thất bại!';
+      document.getElementById('error_message').innerHTML='Vui lòng nhập tên đăng nhập';
+    }
+    if(this.formdata.get('matkhau')=='')
+    {
+      errorbar.style.display='';
+      document.getElementById('error_type').innerHTML='Đăng nhập thất bại!';
+      document.getElementById('error_message').innerHTML='Vui lòng nhập mật khẩu';
+    }
     if(this.taikhoan) {
     
       
       this._login.login(this.taikhoan);
      alert('đăng nhập thành công');
-      this.router.navigate(['/']);
+     window.history.back();
     }
    
     else
@@ -50,6 +62,9 @@ export class DangnhapdangkyComponent extends BaseComponent implements OnInit {
       document.getElementById('error_message').innerHTML='Tên tài khoản hoặc mật khẩu không chính xác';
     }
       }, err => { });       
+  }
+  hide_error_bar(){
+    document.getElementById('error_bar').style.display='none';
   }
   formLogin(){
    

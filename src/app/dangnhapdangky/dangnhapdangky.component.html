@@ -19,7 +19,7 @@
     <div class="container">
         <div class="customer_login">
             <div id ="error_bar" style="display: none;" class="alert alert-danger" >
-                <a class="close" onclick="$('errorbar').css('display','none')">&times;</a>
+                <a class="close" (click)="hide_error_bar()">&times;</a>
                  <strong id="error_type"></strong> &nbsp;
                  <span id="error_message"></span>
                         </div>

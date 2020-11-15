@@ -15,13 +15,16 @@ tg:any;
   }
 
   ngOnInit(): void {
+   
     this.taiKhoan();
+   
     this.loadScripts();
   }
   taiKhoan(){
     this._login.items.subscribe((res) => {
       this.khach.acc = res;
      this.tg=this.khach.acc[0];
+     document.title=this.tg.hoTen;
     });
   }
 }

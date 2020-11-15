@@ -1,7 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BaseComponent } from 'src/app/services/base.component';
-
+declare var $:any;
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -11,20 +11,22 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
   cartitems:any;
   totalamount:any;
   total:any;
-  formdonhang:FormGroup;
+  formdonhang:FormGroup;formdiachi:any;
   tinhs:any;
   huyens:any
-  xas:any;
+  xas:any;dsdiachi:any;
   summited=false;
-  ab:any;
+  ab:any;khach:any;tg:any;doneSetupForm:any;
   constructor(private fb:FormBuilder,injector: Injector) {
     super(injector);
   }
 
   ngOnInit(): void {
+    document.title='Đặt hàng';
     this.gettinh();
+    this.taiKhoan();
+    this.getDiaChi();
     this.ab=1;
-  
     this._cart.items.subscribe((res) => {
       this.cartitems = res;
       this.total = 0;
@@ -40,16 +42,83 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
     },);
     this.FormTTDonHang();
   }
-  FormTTDonHang(){
-    this.formdonhang = this.fb.group({
-      hoten:['', Validators.required],
-      tinh:['', Validators.required], 
-      huyen: ['', Validators.required], 
-      xa: ['', Validators.required], 
-      sdt : ['', Validators.required],
-      diachi:[''],
-      email: ['', Validators.required]
+  taiKhoan(){
+    this._login.items.subscribe((res) => {
+      this.khach = res;
+     this.tg=this.khach[0];
+    
+     
     });
+  }
+  getDiaChi(){
+    if(this.tg){
+    this._api.get('api/QLKhachHang/dia-chi/'+this.tg.maKhachHang).takeUntil(this.unsubscribe).subscribe(dau => {
+      this.dsdiachi = dau;
+    }); }
+  }
+  formThemDiaChi(){
+    this.doneSetupForm = false;
+ 
+  setTimeout(() => {
+    $('#DiaChiModal').modal('toggle');
+    this.formdiachi = this.fb.group({
+      'tinh': ['', Validators.required],
+      'huyen': ['', Validators.required],
+      'xa': ['', Validators.required],
+      'chitiet': [''],
+      'sdt': ['', Validators.required],
+    });
+    this.doneSetupForm = true;
+  });
+  }
+  closeModal(){
+    $('#DiaChiModal').closest('.modal').modal('hide');
+  }
+  reset(){
+    this.formdiachi = this.fb.group({
+      'tinh': ['', Validators.required],
+      'huyen': ['', Validators.required],
+      'xa': ['', Validators.required],
+      'chitiet': [''],
+      'sdt': ['', Validators.required],
+    });
+  }
+  onSubmit(value){
+    let tmp={
+      maKhachHang:this.tg.maKhachHang,
+      xa:Number.parseInt(value.xa),
+      huyen:Number.parseInt(value.huyen),
+      tinh:Number.parseInt(value.tinh),
+      chiTiet:value.chitiet,
+      soDienThoai:value.sdt,
+    }
+    { 
+      this._api.post('api/QLKhachHang/them-dc',tmp).takeUntil(this.unsubscribe).subscribe(res => {
+        alert('Thêm thành công');
+       
+        this.closeModal();
+        window.location.reload();
+        });
+    }
+  }
+  FormTTDonHang(){
+    if(!this.tg){
+      this.formdonhang = this.fb.group({
+        hoten:['', Validators.required],
+        tinh:['', Validators.required], 
+        huyen: ['', Validators.required], 
+        xa: ['', Validators.required], 
+        sdt : ['', Validators.required],
+        diachi:[''],
+        email: ['', Validators.required]
+      });
+    }
+    else{
+      this.formdonhang = this.fb.group({
+        madiachi:['',Validators.required]
+      });
+    }
+   
   }
   get f() { return this.formdonhang.controls; }
   gettinh(){
@@ -78,24 +147,42 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
   }
    themdonhang(value){
     this.summited=true;
-    let tg=[];
+    let ctdh=[];
     this.cartitems.forEach(element => {
       let singleitem={
         "maSanPham":element.maSanPham,
         "tenSanPham":element.tenSanPham,
         "anh":element.anh,
         "link":element.link,
-        "quantity":Number.parseInt(element.quantity),
+        "soLuong":Number.parseInt(element.quantity),
         "donGia":Number.parseInt(element.giahientai.gia)
     };
-    tg.push(singleitem);
+    ctdh.push(singleitem);
     });
-      let hoadon = {
+    let hoadon;
+    if(this.tg){
+       hoadon = {
+        maKH:this.tg.maKhachHang,
+        maShop:'S0001',
+        thanhToan:1,
+        maDiaChi:Number.parseInt(value.madiachi),
+        chitiet:ctdh,
+          tenKH:null,
+          email:null,
+         soDienThoai:null,
+         xa:null,
+         huyen:null,
+         tinh:null,
+         dcChitiet:null,
+        };
+    }
+     else 
+     { hoadon = {
        maKH:null,
        maShop:'S0001',
        thanhToan:1,
        maDiaChi:null,
-       chitiet:tg,
+       chitiet:ctdh,
          tenKH:value.hoten,
          email:value.email,
         soDienThoai:value.sdt,
@@ -103,11 +190,13 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
         huyen:Number.parseInt(value.huyen),
         tinh:Number.parseInt(value.tinh),
         dcChitiet:value.diachi,
-       };debugger; console.log(hoadon);
+       };}
        
       this._api.post('api/QLDonHang/them', hoadon).takeUntil(this.unsubscribe).subscribe(res => {
         
         alert('Đặt hàng thành công');
+        this._cart.clearCart();
+        window.location.replace('');
          }, err => { });      
    
     

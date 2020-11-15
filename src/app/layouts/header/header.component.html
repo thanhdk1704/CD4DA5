@@ -216,17 +216,17 @@
                                 <ul>
                                     
                                     <li *ngIf="account.length==0"><a href="login">Đăng nhập-đăng ký</a></li>
-                                     <li *ngIf="account.length!=0" class="tkhover"><a href="account">Tài khoản <i class="fa fa-angle-down"></i></a>
+                                     <li *ngIf="account.length!=0" class="tkhover"><a href="account">  <i class="fas fa-user"></i> {{account[0].tk.tk}}<i class="fa fa-angle-down"></i></a>
                                     <ul class="sub-menu-account">
-                                        <li><a href="blog-details.html">thông tin</a></li>
-                                        <li><a href="blog-fullwidth.html">Khuyến mãi</a></li>
+                                        <li><a href="customer/profile">thông tin</a></li>
+                                        
                                         <li><a href="blog-sidebar.html">Đơn hàng</a></li>
                                         <li><a (click)="logout()">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="login.html">Theo dõi đơn hàng</a></li>
-                                    <li><a routerLink="cart">Giỏ hàng</a></li>
-                                    <li><a routerLink="cart/check-out">Kênh bán hàng</a></li>
+                                    <li><a href="cart">Giỏ hàng</a></li>
+                                    <li><a href="cart/check-out">Kênh bán hàng</a></li>
                                 </ul>
                             </div>   
                         </div>
@@ -241,7 +241,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-2 col-md-4 col-sm-4 col-4">
                             <div class="logo">
-                                <a routerLink=""><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href=""><img src="assets/img/logo/logo.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-10 col-md-6 col-sm-6 col-6">
@@ -285,10 +285,10 @@
                                                 </div>
                                                 <div class="cart_item" *ngFor="let cis of cart_items">
                                                    <div class="cart_img">
-                                                       <a routerLink="shop/chi-tiet/{{cis.link}}"><img style="widows: 100px;height:100px" src="assets/img/product/{{cis.anh}}" alt=""></a>
+                                                       <a href="shop/chi-tiet/{{cis.link}}"><img style="widows: 100px;height:100px" src="assets/img/product/{{cis.anh}}" alt=""></a>
                                                    </div>
                                                     <div class="cart_info">
-                                                        <a routerLink="shop/chi-tiet/{{cis.link}}">{{cis.tenSanPham}}</a>
+                                                        <a href="shop/chi-tiet/{{cis.link}}">{{cis.tenSanPham}}</a>
                                                         <p>Qty: {{cis.quantity}} X <span> {{cis.giahientai.gia | currency:'VND':true:'1.0-2'}} </span></p>    
                                                     </div>
                                                     <div class="cart_remove">
@@ -304,10 +304,10 @@
                                             </div>
                                             <div class="mini_cart_footer">
                                                <div class="cart_button">
-                                                    <a routerLink="cart">Xem giỏ hàng</a>
+                                                    <a href="cart">Xem giỏ hàng</a>
                                                 </div>
                                                 <div class="cart_button">
-                                                    <a class="active" routerLink="cart/check-out">Đặt hàng</a>
+                                                    <a class="active" href="cart/check-out">Đặt hàng</a>
                                                 </div>
 
                                             </div>
@@ -338,7 +338,7 @@
                                         <li  *ngIf="mn.children !=null" class="menu_item_children"><a href="shop/danh-muc/{{mn.link}}">{{mn.tenLoai}} <i class="fa fa-angle-right"></i></a>
                                             <ul class="categories_mega_menu" style="width:1000px">
                                                 <ng-container *ngFor="let ab of mn.children">
-                                                <li  class="menu_item_children"><b><a routerLink="shop/loai-1/{{ab.link}}">{{ab.tenLoai}}</a></b>
+                                                <li  class="menu_item_children"><b><a href="shop/loai-1/{{ab.link}}">{{ab.tenLoai}}</a></b>
                                                     <ul class="categorie_sub_menu">
                                                         <ng-container *ngFor="let abc of ab.children">
                                                         <li><a href="shop/{{abc.link}}">{{abc.tenLoai}}</a></li>
@@ -348,7 +348,7 @@
                                             </ul>
                                         </li>
                                     
-                                        <li *ngIf="mn.children==null"><a routerLink="shop/{{mn.link}}">{{mn.tenLoai}}</a></li>
+                                        <li *ngIf="mn.children==null"><a href="shop/{{mn.link}}">{{mn.tenLoai}}</a></li>
                                  
                                     
                                     </ng-container>

@@ -17,6 +17,7 @@ export class ChitietComponent extends BaseComponent implements OnInit {
     super(injector);
   }
   ngOnInit(): void {
+    document.title='Chi tiết sản phẩm';
    this.item = {};
    this.sptuongtu=[];
     this._route.params.subscribe(params => {

@@ -26,7 +26,9 @@ dsxa:any;
   }
 
   ngOnInit(): void {
+    document.title='Địa chỉ của tôi';
     this.taiKhoan();
+    this.getDiaChi();
     this.gettinh();
     this.loadScripts();
   }
@@ -38,9 +40,25 @@ dsxa:any;
     });
   }
   getDiaChi(){
-    this._api.get('api/QLDonHang/dia-chi/'+this.tk[0].maKhachHang).takeUntil(this.unsubscribe).subscribe(dau => {
+    this._api.get('api/QLKhachHang/dia-chi/'+this.tk[0].maKhachHang).takeUntil(this.unsubscribe).subscribe(dau => {
       this.dsdiachi = dau;
     }); 
+  }
+  thietLapDiaChi(id){
+    if(confirm('bạn có muốn chuyển địa chỉ này thành địa chỉ mặc định?')){
+      this._api.get('api/QLKhachHang/thiet-lap-dc/'+Number.parseInt(id)).takeUntil(this.unsubscribe).subscribe(dau => {
+        alert('đã thiết lập địa chỉ.');
+        window.location.reload();
+        }); 
+    }
+  }
+  xoaDiaChi(id){
+    if(confirm('bạn có muốn xóa địa chỉ này không?')){
+      this._api.get('api/QLKhachHang/xoa-dc/'+Number.parseInt(id)).takeUntil(this.unsubscribe).subscribe(dau => {
+        alert('đã xóa địa chỉ');
+        window.location.reload();
+        }); 
+    }
   }
   gettinh(){
     this._api.get('api/QLDonHang/get-all-tinh').takeUntil(this.unsubscribe).subscribe(dau => {
@@ -127,7 +145,7 @@ dsxa:any;
     if(this.isCreate) { 
       this._api.post('api/QLKhachHang/them-dc',tmp).takeUntil(this.unsubscribe).subscribe(res => {
         alert('Thêm thành công');
-       
+       window.location.reload();
         this.closeModal();
         });
     }

@@ -15,6 +15,7 @@ export class GiohangComponent extends BaseComponent implements  OnInit {
   }
 
   ngOnInit(): void {
+    document.title='Giỏ hàng';
     this._cart.items.subscribe((res) => {
       this.cartitems = res;
       this.total = 0;

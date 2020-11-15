@@ -31,8 +31,8 @@
                         <button *ngIf="t.main==1" class="btn btn-primary btn-sm" style="cursor: default;background-color: rgb(24, 153, 34);">Địa chỉ nhận hàng</button>
                        </td>
                        <td>
-                           <p><a (click)="fromCapNhatDiaChi(t.maDiaChi)"><u>Sửa</u></a>&nbsp;&nbsp;&nbsp;<a href=""><u> Xóa</u></a></p>
-                           <button *ngIf="t.main!=1" class="btn btn-primary">Thiết lập mặc định</button>
+                           <p><a (click)="fromCapNhatDiaChi(t.maDiaChi)"><u>Sửa</u></a>&nbsp;&nbsp;&nbsp;<a (click)="xoaDiaChi(t.maDiaChi)"><u> Xóa</u></a></p>
+                           <button *ngIf="t.main!=1" (click)="thietLapDiaChi(t.maDiaChi)" class="btn btn-primary">Thiết lập mặc định</button>
                           
                         </td>
                    </tr>

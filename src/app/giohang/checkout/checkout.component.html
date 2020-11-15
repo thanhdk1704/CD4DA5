@@ -63,7 +63,8 @@
 
                                     <div class="col-lg-12 mb-20">
                                         <label>Họ tên <span>*</span></label>
-                                        <input type="text" formControlName="hoten">    
+                                        <input  *ngIf="!tg" type="text"  placeholder="họ tên"  formControlName="hoten">
+                                        <input *ngIf="tg" type="text" readonly style="cursor: not-allowed;" [value]="tg.hoTen" placeholder="họ tên">    
                                     </div>
                                    
                                     <!-- <div class="col-12 mb-20">
@@ -86,8 +87,10 @@
                                     </div> -->
 
                                     <div class="col-12 mb-20">
-                                        <label>Địa chỉ nhận hàng  <span>*</span></label>
+                                        <label>Địa chỉ nhận hàng  <span>*</span></label> 
+                                        &nbsp; <a *ngIf="tg" (click)="formThemDiaChi()"><u>Thêm địa chỉ mới</u></a>
                                         <p></p>
+                                        <ng-container *ngIf="!tg">
                                     <label for="">Tỉnh/thành</label>
                                             <select formControlName="tinh" id="" class="form-control" (change)="gethuyenbytinh($event.target.value)" >
                                                 
@@ -104,20 +107,34 @@
                                         <option *ngFor="let xa of xas" [value]="xa.id">{{xa.type}} {{xa.name}}</option>
                                     </select>
                                 
-                                  
+                                </ng-container>
+                                <ng-container *ngIf="tg">
+                                    <select formControlName="madiachi" class="form-control" id="">
+                                        <option *ngFor="let dc of dsdiachi" [value]="dc.maDiaChi">
+                                            {{dc.chiTiet}},&nbsp;{{dc.ttxa.type}}&nbsp;{{dc.ttxa.name}},
+                                            {{dc.tthuyen.type}}&nbsp;{{dc.tthuyen.name}},
+                                            {{dc.tttinh.type}}&nbsp;{{dc.tttinh.name}}- {{dc.soDienThoai}}
+                                        </option>
+                                    </select>
+                                </ng-container>
                                     </div>
                                    
-                                    <div class="col-12 mb-20"> <label>Địa chỉ chi tiết</label>
+                                    <div *ngIf="!tg" class="col-12 mb-20"> <label>Địa chỉ chi tiết</label>
                                         <input placeholder="điền địa chỉ chi tiết để nhận hàng thuận lợi hơn" formControlName="diachi" type="text">     
                                     </div> 
-                                    <div class="col-lg-6 mb-20">
+                                    <div *ngIf="!tg" class="col-lg-6 mb-20">
                                         <label>Số điện thoại<span>*</span></label>
-                                        <input type="text" formControlName="sdt"> 
+                                        <input type="text" placeholder="số điện thoại" formControlName="sdt"> 
 
                                     </div> 
-                                     <div class="col-lg-6 mb-20">
+                                     <div  *ngIf="!tg" class="col-lg-6 mb-20">
                                         <label> Email   <span>*</span></label>
-                                          <input type="text" formControlName="email"> 
+                                          <input type="text" placeholder="email" formControlName="email"> 
+
+                                    </div> 
+                                    <div  *ngIf="tg" class="col-lg-12 mb-20">
+                                        <label> Email   <span>*</span></label>
+                                          <input type="text" readonly style="cursor: not-allowed;" placeholder="email" value="{{tg.tk.email}}"> 
 
                                     </div> 
                                     <div class="col-12 mb-20">
@@ -278,3 +295,73 @@
         </div>
     </div>
 </div>
+
+<div  id="DiaChiModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg full-height-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Thêm địa chỉ mới</h4>
+        </div>
+        <form *ngIf="doneSetupForm" [formGroup]="formdiachi"  (ngSubmit)="onSubmit(formdiachi.value)" class="form-horizontal ">
+          <div class="modal-body ">
+            <table class="table">
+              <tbody>
+              <tr>
+                <td>
+                    <label class="control-label no-padding-right" > Tỉnh/Thành Phố (<span style="color: red;">*</span>)</label>
+                    <select  class="form-control" formControlName="tinh" id="" (change)="gethuyenbytinh($event.target.value)">
+                      <option *ngFor="let pv of tinhs" [value]="pv.id">{{pv.name}}</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <label class="control-label no-padding-right"> Huyện (<span style="color: red;">*</span>)</label>
+                    <select  class="form-control" formControlName="huyen" (change)="getxabyhuyen($event.target.value)" id="">
+                      <option *ngFor="let dt of huyens" [value]="dt.id">{{dt.name}}</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <label class="control-label no-padding-right"> Xã (<span style="color: red;">*</span>)</label>
+                    <select  formControlName="xa" class="form-control"  id="">
+                        <option *ngFor="let wd of xas" [value]="wd.id">{{wd.name}}</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <label class="control-label no-padding-right"> Địa chỉ chi tiết  </label>
+                    <input type="text" placeholder="Địa chỉ chi tiết" class="form-control" formControlName="chitiet"/>
+                   
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                  <label class="control-label no-padding-right"> Số điện thoại (<span style="color: red;">*</span>)</label>
+                  <input type="text" placeholder="Số điện thoại" class="form-control" formControlName="sdt"/>
+                  <div *ngIf="submitted && f.sdt.errors" class="invalid-feedback">
+                    <div *ngIf="f.sdt.errors.required">Vui lòng nhập số điện thoại</div>
+                  </div>
+                </td>
+            </tr>
+              </tbody>
+            </table>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-default btn-sm" (click)="reset()">
+            <i class="fa fa-bell"></i> Làm mới
+          </button>
+          <button type="submit" class="btn btn-success btn-sm btn-submit">
+            <i class="fa fa-save"></i> Đồng ý
+          </button>
+          <button type="button" class="btn btn-default btn-sm" (click)="closeModal()">
+            <i class="fa fa-times"></i> Đóng lại
+          </button>
+        </div>
+      </form>  
+      </div>
+    </div>
+  </div>

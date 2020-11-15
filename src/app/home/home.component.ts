@@ -18,6 +18,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
  
   ngOnInit(): void {
+    document.title='Trang chủ - Emarket';
     this.thang=0;
     this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(res => {
       this.dmuccha = res;
