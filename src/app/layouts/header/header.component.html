@@ -42,7 +42,7 @@
                         </ul>
                     </div> 
                     <div class="search_container">
-                        <form action="#">
+                        <form action="#" method="GET">
                            <div class="hover_category">
                                 <select class="select_option" name="select" id="categori1">
                                     <option selected value="1">Tất cả</option>
@@ -213,21 +213,22 @@
                         </div>
                         <div class="col-lg-8 col-md-7">
                             <div class="header_top_links text-right">
-                                <ul>
-                                    
-                                    <li *ngIf="account.length==0"><a href="login">Đăng nhập-đăng ký</a></li>
-                                     <li *ngIf="account.length!=0" class="tkhover"><a href="account">  <i class="fas fa-user"></i> {{account[0].tk.tk}}<i class="fa fa-angle-down"></i></a>
-                                    <ul class="sub-menu-account">
-                                        <li><a href="customer/profile">thông tin</a></li>
-                                        
-                                        <li><a href="blog-sidebar.html">Đơn hàng</a></li>
-                                        <li><a (click)="logout()">Đăng xuất</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="login.html">Theo dõi đơn hàng</a></li>
+                                
+                                    <div  class="header_account"  >
+                                        <ul>
+                                            <li class="language" *ngIf="account.length==0"><a href="login">Đăng nhập-đăng ký</a></li>
+                                            <li class="language" *ngIf="account.length!=0"><a href="#"><img src="assets/img/logo/user.jpg" alt=""> {{account[0].tk.tk}}<i class="ion-chevron-down"></i></a>
+                                                <ul class="dropdown_language">
+                                                    <li><a href="customer/profile" class="account_submenu">Thông tin</a></li>
+                                                    <li><a href="customer/orders" class="account_submenu">Đơn hàng</a></li>
+                                                    <li><a (click)="logout()"  class="account_submenu">Đăng xuất</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="login.html">Theo dõi đơn hàng</a></li>
                                     <li><a href="cart">Giỏ hàng</a></li>
-                                    <li><a href="cart/check-out">Kênh bán hàng</a></li>
-                                </ul>
+                                    <li><a href="cart/check-out">Kênh bán hàng</a></li>                                           
+                                        </ul>
+                                    </div>
                             </div>   
                         </div>
                     </div>
@@ -247,7 +248,8 @@
                         <div class="col-lg-10 col-md-6 col-sm-6 col-6">
                             <div class="header_right_box">
                                 <div class="search_container">
-                                    <form action="#">
+                                    <!-- that's the form -->
+                                    <form action="facebook.com" method="POST">
                                        <div class="hover_category">
                                             <select class="btn btn-default" style="border: none;" name="select" id="categori2">
                                                 <option selected value="all">Tất cả danh mục</option>
@@ -273,7 +275,7 @@
                                             <span class="cart_count">{{cart_items.length}}</span>
                                         </a>
                                         <!--mini cart-->
-                                        <div class="mini_cart" style="overflow-y:auto;">
+                                        <div *ngIf="cart_items.length!=0" class="mini_cart" style="overflow-y:auto;">
                                             <div class="mini_cart_inner">
                                                 <div class="cart_close">
                                                     <div class="cart_text">
@@ -306,12 +308,14 @@
                                                <div class="cart_button">
                                                     <a href="cart">Xem giỏ hàng</a>
                                                 </div>
+                                                
                                                 <div class="cart_button">
                                                     <a class="active" href="cart/check-out">Đặt hàng</a>
                                                 </div>
 
                                             </div>
                                         </div>
+                                        <div *ngIf="cart_items.length==0" class="mini_cart" style="overflow-y:auto;">Chưa có sản phẩm trong giỏ hàng</div>
                                         <!--mini cart end-->
                                     </div>
                                 </div>

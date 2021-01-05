@@ -24,7 +24,7 @@ tg:any;
     this._login.items.subscribe((res) => {
       this.khach.acc = res;
      this.tg=this.khach.acc[0];
-     document.title=this.tg.hoTen;
+     document.title="Profile của tôi";
     });
   }
 }

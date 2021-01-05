@@ -12,7 +12,9 @@ declare var $:any;
 })
 export class DangnhapdangkyComponent extends BaseComponent implements OnInit {
   formdata:any;taikhoan:any;
-  public submitted:any;submit_error:any;
+  formDangKy:any;
+  public submitted:any;
+  submit_error:any;
   constructor(private router: Router,private fb:FormBuilder,injector: Injector) { 
     super(injector);
   }
@@ -21,6 +23,7 @@ export class DangnhapdangkyComponent extends BaseComponent implements OnInit {
     this.submitted=false;
     this.formLogin();
     this.loadScripts();
+    this.formRegister();
   }
   dangNhap(value){
     let errorbar=document.getElementById('error_bar');
@@ -63,6 +66,9 @@ export class DangnhapdangkyComponent extends BaseComponent implements OnInit {
     }
       }, err => { });       
   }
+  register(value){
+
+  }
   hide_error_bar(){
     document.getElementById('error_bar').style.display='none';
   }
@@ -73,6 +79,16 @@ export class DangnhapdangkyComponent extends BaseComponent implements OnInit {
       'matkhau':['', Validators.required]
     });
    
+  }
+  formRegister(){
+    this.formDangKy = this.fb.group({
+      'tendangnhap': ['', Validators.required],
+      'matkhau':['', Validators.required],
+      'email':['', Validators.email],
+      'gioitinh':[''],
+      'ngaysinh':[''],
+
+    });
   }
 
 }

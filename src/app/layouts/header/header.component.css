@@ -32,3 +32,9 @@ header{
     display: block;
     max-height: 60px;
   }
+  .account_submenu{
+    color: black;
+  }
+  .account_submenu:hover{
+    color:#C70909;
+  }

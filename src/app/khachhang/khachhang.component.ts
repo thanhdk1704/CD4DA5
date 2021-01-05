@@ -21,7 +21,6 @@ export class KhachhangComponent  extends BaseComponent implements OnInit {
     taiKhoan(){
       this._login.items.subscribe((res) => {
         this.acc = res;
-       
       });
     }
   }
