@@ -15,6 +15,7 @@ import { CurrPipe } from './services/curr.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 // import { ChitietComponent } from './sanpham/chitiet/chitiet.component';
 // import { BaseComponent } from './base/base.component';
 
@@ -31,6 +32,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     ComingsoonComponent,
     CurrPipe,
     WishlistComponent,
+    SearchResultComponent,
     // BaseComponent,
 
   ],
