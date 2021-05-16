@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, Injector} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Injector } from '@angular/core';
 import { BaseComponent } from '../services/base.component';
 
 @Component({
@@ -7,16 +7,48 @@ import { BaseComponent } from '../services/base.component';
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent extends BaseComponent implements OnInit {
-
-  @Input() searchMember:any;
-  constructor(private injector:Injector) {
+  searchResponse:any;
+  searchResult: any;
+  spResults:any;
+  tongsl1:any;
+  keyWord:any;
+  index:any;
+  size:any;
+  danhMuc:any;
+  minPrice:any;maxPrice:any;
+  @Input() searchMember: any;
+  constructor(private injector: Injector) {
     super(injector);
+    this.searchResult = JSON.parse(localStorage.getItem('searchResult')) ? JSON.parse(localStorage.getItem('searchResult')) : null;
   }
 
   ngOnInit(): void {
+    this.index=1;
+    this.size=25;
+    this.renderSearchResult();
   }
-  
-  renderSearchResult(){
-        
+
+  renderSearchResult() {
+    if (localStorage.getItem('searchResult')) {
+      this.spResults=this.searchResult.data;
+      this.tongsl1=this.searchResult.total;
+      this.keyWord=this.searchResult.keyWord;
+      this.minPrice=this.searchResult.minPrice;
+      this.maxPrice=this.searchResult.maxPrice;
+      this.danhMuc=this.searchResult.danhMuc;
+    }
+    else {
+      this.searchResult = 'Empty';
+    }
+    console.log(this.searchResult);
+  }
+  loadPage(page) {
+    let result = this._api.get('api/QLSanPham' + '/search/result/' + this.keyWord + '/' + '%20' + '/' + this.danhMuc + '/' + '%20' + '/' + '%20' + '/' + this.minPrice + '/' + this.maxPrice + '/' + page + '/' + 24)
+      .takeUntil(this.unsubscribe).subscribe(res => {
+        this.searchResponse = res;
+        this.spResults = this.searchResponse.data;
+        this.tongsl1 = this.searchResponse.totalItems;
+
+      });
   }
 }
