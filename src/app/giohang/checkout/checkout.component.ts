@@ -164,7 +164,7 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
        hoadon = {
         maKH:this.tg.maKhachHang,
         maShop:'S0001',
-        thanhToan:1,
+        thanhToan:0,
         maDiaChi:Number.parseInt(value.madiachi),
         chitiet:ctdh,
           tenKH:null,
@@ -174,6 +174,7 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
          huyen:null,
          tinh:null,
          dcChitiet:null,
+         hashedCardInformation:null
         };
     }
      else 
@@ -190,6 +191,7 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
         huyen:Number.parseInt(value.huyen),
         tinh:Number.parseInt(value.tinh),
         dcChitiet:value.diachi,
+        hashedCardInformation:null
        };}
        
       this._api.post('api/QLDonHang/them', hoadon).takeUntil(this.unsubscribe).subscribe(res => {

@@ -85,8 +85,8 @@
                                     <form (ngSubmit)="search()" [formGroup]="formSearch">
                                        <div class="hover_category">
                                             <select class="btn btn-default" style="border: none;" formControlName="loai" id="categori2">
-                                                <option [value]="0">Tất cả danh mục</option>
-                                                <option *ngFor="let item of menus" value="{{item.MaLoai}}">{{item.tenLoai}}</option>
+                                                <option [value]="0" selected >Tất cả danh mục</option>
+                                                <option *ngFor="let danhMuc of menus" value="{{(danhMuc.maLoai)}}">{{danhMuc.tenLoai}}</option>
                                             </select>                        
                                        </div>
                                         <div class="search_box">

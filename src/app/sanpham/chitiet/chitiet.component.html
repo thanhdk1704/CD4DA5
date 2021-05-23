@@ -26,7 +26,7 @@
                                     <img id="zoom1" src="assets/img/product/{{item.anh}}" style="width: 533px;height: 533px;" alt="{{item.tenSanPham}}">
                                 </a>
                             </div>
-                            <div class="single-zoom-thumb">
+                            <!-- <div class="single-zoom-thumb">
                                 <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                                     <li>
                                         <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/productbig4.jpg" data-zoom-image="assets/img/product/productbig4.jpg">
@@ -53,7 +53,7 @@
 
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-6">
@@ -67,7 +67,7 @@
                                         <li class="next"><a href="variable-product.html"><i class="fa fa-angle-right"></i></a></li>
                                     </ul>
                                 </div>
-                               <div class="product_rating">
+                               <!-- <div class="product_rating">
                                   <ul>
                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
@@ -76,16 +76,16 @@
                                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                        <li class="review"><a href="#">(1 customer review )</a></li>
                                    </ul>
-                                </div>
+                                </div> -->
                                 <div class="price_box">
-                                    <span class="old_price">$80.00</span>
+                                    
                                     <span class="current_price">{{item.giahientai.gia|currency:'VND'}}</span>
                                 </div>
                                 <div class="product_desc">
-                                    <p *ngIf="item.moTa">{{item.moTa}}</p>
+                                    <p *ngIf="item.moTa" [innerHTML]="item.moTa"></p>
                                     <p *ngIf="!item.moTa">không có mô tả</p>
                                 </div>
-                                <div class="product_variant color">
+                                <!-- <div class="product_variant color">
                                     <h3>Lựa chọn</h3>
                                     <label>color</label>
                                     <ul>
@@ -94,7 +94,7 @@
                                         <li class="color3"><a href="#"></a></li>
                                         <li class="color4"><a href="#"></a></li>
                                     </ul>
-                                </div>
+                                </div> -->
                                 <div class="product_variant quantity">
                                     <label>Số lượng</label>
                                     <input min="1" max="100" #slg value="1" type="number">
@@ -149,7 +149,7 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade show active" id="info" role="tabpanel" >
                                         <div class="product_info_content">
-                                            <p *ngIf="item.moTa">{{item.moTa}}</p>
+                                            <p *ngIf="item.moTa" [innerHTML]="item.moTa">{{item.moTa}}</p>
                                             <p *ngIf="!item.moTa">chưa có mô tả</p>
                                             <p>Thông tin chi tiết:</p>
 

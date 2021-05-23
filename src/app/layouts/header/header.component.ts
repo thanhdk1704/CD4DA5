@@ -35,6 +35,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     });
     this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(dau => {
       this.menus = dau;
+     
     });
     this._cart.items.subscribe((res) => {
       this.cart_items = res;
@@ -55,6 +56,8 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   search() {
     let keyWord = this.formSearch.get('keyWord') && this.formSearch.get('keyWord').value.trim() != '' ? this.formSearch.get('keyWord').value.trim() : '%20';
     let maloai = this.formSearch.get('loai') && this.formSearch.get('loai').value.trim() != '' ? parseInt(this.formSearch.get('loai').value) : 0;
+    console.log(maloai);
+    
     let result = this._api.get('api/QLSanPham' + '/search/result/' + keyWord + '/' + '%20' + '/' + maloai + '/' + '%20' + '/' + '%20' + '/' + 0 + '/' + 0 + '/' + 1 + '/' + 24)
       .takeUntil(this.unsubscribe).subscribe(res => {
         this.searchResponse = res;
@@ -70,7 +73,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
           lowToHighPrice: null,
         }     
         localStorage.setItem('searchResult', JSON.stringify(searchResult));
-        this.router.navigate(['/search/result']);
+        window.location.replace("http://localhost:4200/search/result");
       });
 
   }
@@ -81,11 +84,13 @@ export class HeaderComponent extends BaseComponent implements OnInit {
 
     });
   }
+
   logout() {
     this._login.logOut();
     alert('đã đăng xuất');
     window.location.replace('');
   }
+  
   deleteItem(item) {
     this._cart.deleteItem(item.maSanPham);
   }
