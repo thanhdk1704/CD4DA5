@@ -50,6 +50,7 @@ export class WishlistService {
     let local_storage = this.getItems().filter((x) => x.maSanPham != maSanPham);
     localStorage.setItem('wishlist', JSON.stringify(local_storage));
     this.itemsSubject.next(local_storage);
+    window.location.reload();
   }
  
   numberOfItems() {

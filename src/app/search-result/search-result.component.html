@@ -24,12 +24,16 @@
                     <div class="widget_list widget_categories">
                         <h3>Danh mục</h3>
                         <ul>
-                            <ng-container>
-                                <li class="widget_sub_categories"><a href="javascript:void(0)"><b></b></a>
-                                    <ul class="widget_dropdown_categories">
-                                        <li><a href="#">Computer</a></li>
-                                        <li><a href="#">Networking</a></li>
-                                    </ul>
+                            <ng-container *ngFor="let cate of allLoai">
+                                <li class="widget_sub_categories"  id="loai_{{cate.maLoai}}" >
+                                    <a href="javascript:void(0)">
+                                    <b>{{cate.tenLoai}}</b>
+                                </a>
+                                    <ng-container *ngFor="let cate2 of cate.children">
+                                        <ul class="widget_dropdown_categories">
+                                            <li><a href="#">{{cate2.tenLoai}}</a></li>
+                                        </ul>
+                                    </ng-container>
                                 </li>
                             </ng-container>
 
@@ -37,20 +41,12 @@
                     </div>
                     <div class="widget_list widget_filter">
                         <h3>Giá</h3>
-                        <form action="#">
-                            <div>
-                                <input type="radio" name="price" value="1" id="duoi100"><label for="duoi100" class="font-weight-bold">Dưới 100,000</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="price" value="2" id="duoi200"><label for="duoi200" class="font-weight-bold"> 100,000-500,000</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="price" value="3" id="duoi1000"><label for="duoi1000" class="font-weight-bold"> 500,000-1,000,000</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="price" value="4" id="tren1000"><label for="tren1000" class="font-weight-bold"> >1,000,000</label>
-                            </div>
-                        </form>
+                       <div class="row">
+                           <div class="col-md-6">Min</div>
+                           <div class="col-md-6">Max</div>
+                           <div class="col-md-6"><input type="text" class="form-control"></div> 
+                           <div class="col-md-6"><input type="text" class="form-control"></div>
+                       </div>
                     </div>
                     <div class="widget_list widget_categories">
                         <h3>Manufacturer</h3>

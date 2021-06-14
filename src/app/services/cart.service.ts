@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private itemsSubject = new BehaviorSubject<any[]>([]);
+    private itemsSubject = new BehaviorSubject<any[]>([]);
   items = this.itemsSubject.asObservable();
   constructor() {
     let local_storage = JSON.parse(localStorage.getItem('cart'));
@@ -15,7 +16,6 @@ export class CartService {
   }
   
   addToCart(item) {
-    debugger;
     item.quantity = 1;
     let local_storage:any;
     if (localStorage.getItem('cart') == null) {
@@ -36,6 +36,7 @@ export class CartService {
     }
     localStorage.setItem('cart', JSON.stringify(local_storage));
     this.itemsSubject.next(local_storage);
+    window.location.replace("cart");
   }
 
   getItems() {

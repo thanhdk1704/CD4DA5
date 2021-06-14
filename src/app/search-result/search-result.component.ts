@@ -18,6 +18,7 @@ export class SearchResultComponent extends BaseComponent implements OnInit {
   danhMuc: any;
   minPrice: any; maxPrice: any;
   lowToHighPrice: any;
+  allLoai: any;
   @Input() searchMember: any;
   constructor(private injector: Injector) {
     super(injector);
@@ -27,20 +28,24 @@ export class SearchResultComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.index = 1;
     this.size = 25;
-
+    this.getAllLoai();
     this.renderSearchResult();
-    this.loadScripts()
+    setTimeout(() => {
+      this.loadScripts();
+    }, );
+    
+
   }
 
   filterSearchResult(filterCondition) {
     switch (parseInt(filterCondition)) {
       case 0: {
       }
-      case 1:{
-        this.lowToHighPrice=false;
+      case 1: {
+        this.lowToHighPrice = false;
       }
-      case 2:{
-        this.lowToHighPrice=true;
+      case 2: {
+        this.lowToHighPrice = true;
       }
       default: {
         break;
@@ -65,7 +70,7 @@ export class SearchResultComponent extends BaseComponent implements OnInit {
     console.log(this.searchResult);
   }
   loadPage(page) {
-    let result = this._api.get('api/QLSanPham' + '/search/result/' + this.keyWord + '/' + '%20' + '/' + this.danhMuc + '/' + '%20' + '/' + '%20' + '/' + this.minPrice + '/' + this.maxPrice + '/' + page + '/' + 24 + '/' +(this.lowToHighPrice?this.lowToHighPrice:''))
+    let result = this._api.get('api/QLSanPham' + '/search/result/' + this.keyWord + '/' + '%20' + '/' + this.danhMuc + '/' + '%20' + '/' + '%20' + '/' + this.minPrice + '/' + this.maxPrice + '/' + page + '/' + 24 + '/' + (this.lowToHighPrice ? this.lowToHighPrice : ''))
       .takeUntil(this.unsubscribe).subscribe(res => {
         this.searchResponse = res;
         this.spResults = this.searchResponse.data;
@@ -74,13 +79,19 @@ export class SearchResultComponent extends BaseComponent implements OnInit {
       });
   }
 
-  addToCart(item){
+  getAllLoai() {
+    this._api.get('api/Loai/all-with-children').takeUntil(this.unsubscribe).subscribe(dau => {
+      this.allLoai = dau;
+
+    });
+  }
+  addToCart(item) {
     this._cart.addToCart(item);
     alert('đã thêm vào giỏ hàng');
-    
+
   }
-  
-  addToWishlist(item){
+
+  addToWishlist(item) {
     this._wishlist.addToWishlist(item);
     alert('đã thêm vào danh sách yêu thích');
   }

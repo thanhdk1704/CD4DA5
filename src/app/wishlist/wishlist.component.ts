@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { BaseComponent } from '../services/base.component';
+declare var $ :any;
 
 @Component({
   selector: 'app-wishlist',
@@ -28,10 +29,13 @@ export class WishlistComponent extends BaseComponent implements  OnInit {
   }
   addToCart(it) { 
     this._cart.addToCart(it);
+    this._wishlist.deleteItem(it);
     alert('Thêm thành công!'); 
+    
   }
   deleteItem(item){
     this._wishlist.deleteItem(item);
+    //// sau khi theem vao gio hang thisang trang gio hang ok? lam sau
   
   }
   

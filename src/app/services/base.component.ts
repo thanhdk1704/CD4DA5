@@ -5,6 +5,7 @@ import { of as observableOf, Subject } from 'rxjs';
 import { ApiService } from './api.service';
 import { WishlistService } from './wishlist.service';
 import { LoginService } from './login.service';
+import { UIHandlerService } from './uihandler.service';
 export class BaseComponent {
    public unsubscribe = new Subject();
    public _renderer:any;
@@ -13,6 +14,7 @@ export class BaseComponent {
    public _login:LoginService;
    public _wishlist:WishlistService;
    public _route: ActivatedRoute;
+   public _uihandler:UIHandlerService;
    constructor(injector: Injector) {  
       this._renderer = injector.get(Renderer2);
       this._api = injector.get(ApiService);
@@ -20,6 +22,7 @@ export class BaseComponent {
       this._cart = injector.get(CartService);
       this._wishlist = injector.get(WishlistService);
       this._route = injector.get(ActivatedRoute);
+      this._uihandler=injector.get(UIHandlerService);
       } 
    public loadScripts() {
          this.renderExternalScript('assets/js/main.js').onload = () => {
