@@ -36,7 +36,7 @@ export class CartService {
     }
     localStorage.setItem('cart', JSON.stringify(local_storage));
     this.itemsSubject.next(local_storage);
-    window.location.replace("cart");
+    
   }
 
   getItems() {
