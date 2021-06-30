@@ -133,24 +133,24 @@
                                     </div> 
                                     <div class="payment_method">
                                         <div class="panel-default">
-                                             <input id="payment" name="payMethod" formControlName="payMethod" value="0" type="radio" data-target="createp_account" />
+                                             <input id="payment" (change)="checkATM()" name="payMethod" formControlName="payMethod" value="0" type="radio" checked data-target="createp_account" />
                                              <label for="payment" data-toggle="collapse" data-target="#method" aria-controls="method">Thanh toán khi nhận hàng</label>
      
-                                             <div id="method" class="collapse one" data-parent="#accordion">
-                                                 <div class="card-body1">
-                                                    <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                                                 </div>
-                                             </div>
+                                            
                                          </div> 
                                         <div class="panel-default">
-                                             <input id="payment_defult" name="payMethod" formControlName="payMethod" value="1" type="radio" data-target="createp_account" /> 
+                                             <input id="payment_defult" (change)="checkATM()" name="payMethod" formControlName="payMethod" value="1" type="radio" data-target="createp_account" /> 
                                              <label for="payment_defult" data-toggle="collapse" data-target="#collapsedefult" aria-controls="collapsedefult">Thẻ ATM</label>
      
-                                             <div id="collapsedefult" class="collapse one" data-parent="#accordion">
+                                             <div *ngIf="checkedATM">
                                                  <div class="card-body1">
-                                                    <select name="" class="form-control" >
-                                                        <option *ngFor="let bank of banks" value="{{bank.id}}">{{bank.bankName}}</option>
-                                                    </select>
+                                                    <div class="row">
+                                                        <div *ngFor="let bank of banks" id="bank_{{bank.id}}" (click)="selectBank(bank.id)" class="col-3 border rounded m-2">
+                                                            <a href="javascript:void(0);" >
+                                                                <img src="../../../assets/img/bank-icon/{{bank.iconFileName}}" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                     <input type="text" formControlName="maThe" placeholder="ma the ATM" class="form-control">
                                                  </div>
                                              </div>
