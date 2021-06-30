@@ -17,12 +17,26 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
   xas: any; dsdiachi: any;
   summited = false;
   banks: any;
+  checkedATM: boolean;
   ab: any; khach: any; tg: any; doneSetupForm: any;
   constructor(private fb: FormBuilder, injector: Injector) {
     super(injector);
   }
+  checkATM() {
+    this.checkedATM = this.checkedATM ? false : true;
+  }
 
+  selectBank(bankId){
+    document.getElementById('bank_'+bankId).className='col-3 border border-primary rounded m-2';
+   
+    var hj=this.banks.filter(x=>x.id !== bankId);
+    hj.forEach(element => {
+      document.getElementById('bank_'+element.id).className='col-3 border rounded m-2';
+
+    });
+  }
   ngOnInit(): void {
+    this.checkedATM = false;
     document.title = 'Đặt hàng';
     this.gettinh();
     this.taiKhoan();
